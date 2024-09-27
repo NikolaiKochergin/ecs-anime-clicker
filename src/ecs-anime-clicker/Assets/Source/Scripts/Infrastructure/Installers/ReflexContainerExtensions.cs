@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Threading;
 using Cysharp.Threading.Tasks;
 using Reflex.Core;
 using RSG;
@@ -68,17 +67,22 @@ namespace Source.Scripts.Infrastructure.Installers
     {
       LogPromiseException();
 
-      Container container = builder
-        .Build();
-      
+      builder
+        .Build()
+        .EnterToBootstrapState()
+        .StartGameLoop();
+    }
+
+    private static Container EnterToBootstrapState(this Container container)
+    {
       container
         .Resolve<IGameStateMachine>()
         .Enter<BootstrapState>();
 
-      StartLoop(container);
+      return container;
     }
 
-    private static async void StartLoop(Container container)
+    private static async void StartGameLoop(this Container container)
     {
       IEnumerable<ITickable> tickables = container.All<ITickable>();
       while (true)
@@ -86,7 +90,7 @@ namespace Source.Scripts.Infrastructure.Installers
         foreach (ITickable tickable in tickables)
           tickable.Tick();
 
-        await UniTask.Yield(PlayerLoopTiming.Update, CancellationToken.None);
+        await UniTask.Yield(PlayerLoopTiming.Update);
       }
     }
 
