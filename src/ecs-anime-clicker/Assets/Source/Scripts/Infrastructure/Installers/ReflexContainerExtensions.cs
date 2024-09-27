@@ -1,4 +1,12 @@
+using System.Collections.Generic;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using Reflex.Core;
+using RSG;
+using Source.Scripts.Infrastructure.States.Factory;
+using Source.Scripts.Infrastructure.States.GameStates;
+using Source.Scripts.Infrastructure.States.StateMachine;
+using UnityEngine;
 
 namespace Source.Scripts.Infrastructure.Installers
 {
@@ -39,25 +47,50 @@ namespace Source.Scripts.Infrastructure.Installers
     
     public static ContainerBuilder BindEntityIndices(this ContainerBuilder builder) => 
       builder;
-    
-    public static ContainerBuilder BindStateMachine(this ContainerBuilder builder) => 
-      builder;
-    
-    public static ContainerBuilder BindStateFactory(this ContainerBuilder builder) => 
-      builder;
-    
-    public static ContainerBuilder BindGameStates(this ContainerBuilder builder) => 
-      builder;
-    
+
     public static ContainerBuilder BindProgressServices(this ContainerBuilder builder) => 
       builder;
 
+    public static ContainerBuilder BindStateMachine(this ContainerBuilder builder) =>
+      builder
+        .AddSingleton(typeof(GameStateMachine), typeof(IGameStateMachine), typeof(ITickable));
+
+    public static ContainerBuilder BindStateFactory(this ContainerBuilder builder) => 
+      builder
+        .AddSingleton(typeof(StateFactory), typeof(IStateFactory));
+
+    public static ContainerBuilder BindGameStates(this ContainerBuilder builder) => 
+      builder
+        .AddSingleton(typeof(BootstrapState))
+        .AddSingleton(typeof(LoadProgressState));
+
     public static void StartGame(this ContainerBuilder builder)
     {
-      builder
+      LogPromiseException();
+
+      Container container = builder
         .Build();
-      // .Resolve<IGameStateMachine>()
-      // .Enter<BootstrapState();
+      
+      container
+        .Resolve<IGameStateMachine>()
+        .Enter<BootstrapState>();
+
+      StartLoop(container);
     }
+
+    private static async void StartLoop(Container container)
+    {
+      IEnumerable<ITickable> tickables = container.All<ITickable>();
+      while (true)
+      {
+        foreach (ITickable tickable in tickables)
+          tickable.Tick();
+
+        await UniTask.Yield(PlayerLoopTiming.Update, CancellationToken.None);
+      }
+    }
+
+    private static void LogPromiseException() => 
+      Promise.UnhandledException += (_, e) => Debug.LogError(e);
   }
 }
