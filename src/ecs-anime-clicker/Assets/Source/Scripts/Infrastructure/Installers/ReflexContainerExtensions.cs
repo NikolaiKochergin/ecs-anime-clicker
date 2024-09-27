@@ -2,9 +2,14 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Reflex.Core;
 using RSG;
+using Source.Scripts.Gameplay.Common.Random;
+using Source.Scripts.Gameplay.Common.Time;
+using Source.Scripts.Infrastructure.Identifiers;
+using Source.Scripts.Infrastructure.Loading;
 using Source.Scripts.Infrastructure.States.Factory;
 using Source.Scripts.Infrastructure.States.GameStates;
 using Source.Scripts.Infrastructure.States.StateMachine;
+using Source.Scripts.Infrastructure.Systems;
 using UnityEngine;
 
 namespace Source.Scripts.Infrastructure.Installers
@@ -15,16 +20,21 @@ namespace Source.Scripts.Infrastructure.Installers
       builder;
 
     public static ContainerBuilder BindInfrastructureServices(this ContainerBuilder builder) =>
-      builder;
+      builder
+        .AddSingleton(typeof(IdentifierService), typeof(IIdentifierService));
     
     public static ContainerBuilder BindAssetManagementServices(this ContainerBuilder builder) =>
       builder;
-    
+
     public static ContainerBuilder BindCommonServices(this ContainerBuilder builder) =>
-      builder;
-    
-    public static ContainerBuilder BindSystemFactory(this ContainerBuilder builder) => 
-      builder;
+      builder
+        .AddSingleton(typeof(UnityRandomService), typeof(IRandomService))
+        .AddSingleton(typeof(UnityTimeService), typeof(ITimeService))
+        .AddSingleton(typeof(SceneLoader), typeof(ISceneLoader));
+
+    public static ContainerBuilder BindSystemFactory(this ContainerBuilder builder) =>
+      builder
+        .AddSingleton(typeof(SystemFactory), typeof(ISystemFactory));
     
     public static ContainerBuilder BindUIFactories(this ContainerBuilder builder) => 
       builder;
