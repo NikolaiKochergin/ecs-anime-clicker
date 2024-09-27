@@ -8,7 +8,7 @@ namespace Source.Scripts.Infrastructure.States.StateInfrastructure
 
     private bool ExitWasRequested => _exitPromise != null;
 
-    public void Enter() { }
+    public virtual void Enter() { }
 
     IPromise IExitableState.BeginExit()
     {
@@ -22,7 +22,7 @@ namespace Source.Scripts.Infrastructure.States.StateInfrastructure
       ClearExitPromise();
     }
 
-    public void Update()
+    void IUpdateable.Update()
     {
       if (!ExitWasRequested)
         OnUpdate();

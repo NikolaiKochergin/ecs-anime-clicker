@@ -4,6 +4,7 @@ using Reflex.Core;
 using RSG;
 using Source.Scripts.Gameplay.Common.Random;
 using Source.Scripts.Gameplay.Common.Time;
+using Source.Scripts.Gameplay.Input.Service;
 using Source.Scripts.Infrastructure.Identifiers;
 using Source.Scripts.Infrastructure.Loading;
 using Source.Scripts.Infrastructure.States.Factory;
@@ -16,8 +17,9 @@ namespace Source.Scripts.Infrastructure.Installers
 {
   public static class ReflexContainerExtensions
   {
-    public static ContainerBuilder BindInputService(this ContainerBuilder builder) => 
-      builder;
+    public static ContainerBuilder BindInputService(this ContainerBuilder builder) =>
+      builder
+        .AddSingleton(typeof(StandaloneInputService), typeof(IInputService));
 
     public static ContainerBuilder BindInfrastructureServices(this ContainerBuilder builder) =>
       builder
@@ -38,9 +40,11 @@ namespace Source.Scripts.Infrastructure.Installers
     
     public static ContainerBuilder BindUIFactories(this ContainerBuilder builder) => 
       builder;
-    
-    public static ContainerBuilder BindContexts(this ContainerBuilder builder) => 
-      builder;
+
+    public static ContainerBuilder BindContexts(this ContainerBuilder builder) =>
+      builder
+        .AddSingleton(Contexts.sharedInstance)
+        .AddSingleton(Contexts.sharedInstance.input);
     
     public static ContainerBuilder BindGameplayServices(this ContainerBuilder builder) =>
       builder;
@@ -81,6 +85,8 @@ namespace Source.Scripts.Infrastructure.Installers
         .Build()
         .EnterToBootstrapState()
         .StartGameLoop();
+      
+      
     }
 
     private static Container EnterToBootstrapState(this Container container)
@@ -99,8 +105,7 @@ namespace Source.Scripts.Infrastructure.Installers
       {
         foreach (ITickable tickable in tickables)
           tickable.Tick();
-
-        await UniTask.Yield(PlayerLoopTiming.Update);
+        await UniTask.NextFrame();
       }
     }
 
