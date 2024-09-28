@@ -44,7 +44,9 @@ namespace Source.Scripts.Infrastructure.Installers
     public static ContainerBuilder BindContexts(this ContainerBuilder builder) =>
       builder
         .AddSingleton(Contexts.sharedInstance)
-        .AddSingleton(Contexts.sharedInstance.input);
+        .AddSingleton(Contexts.sharedInstance.input)
+        .AddSingleton(Contexts.sharedInstance.game)
+        .AddSingleton(Contexts.sharedInstance.meta);
     
     public static ContainerBuilder BindGameplayServices(this ContainerBuilder builder) =>
       builder;
@@ -85,8 +87,6 @@ namespace Source.Scripts.Infrastructure.Installers
         .Build()
         .EnterToBootstrapState()
         .StartGameLoop();
-      
-      
     }
 
     private static Container EnterToBootstrapState(this Container container)
