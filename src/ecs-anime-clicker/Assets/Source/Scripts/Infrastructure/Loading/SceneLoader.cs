@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 
 namespace Source.Scripts.Infrastructure.Loading
@@ -10,7 +11,7 @@ namespace Source.Scripts.Infrastructure.Loading
       if(SceneManager.GetActiveScene().name == nextScene)
         return;
 
-      await SceneManager.LoadSceneAsync(nextScene).ToUniTask();
+      await Addressables.LoadSceneAsync(nextScene).ToUniTask();
     }
   }
 }

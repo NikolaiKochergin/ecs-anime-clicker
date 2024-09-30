@@ -1,4 +1,8 @@
-﻿using Source.Scripts.Infrastructure.States.StateInfrastructure;
+﻿using System;
+using Cysharp.Threading.Tasks;
+using Reflex.Core;
+using Source.Scripts.Infrastructure.AssetManagement;
+using Source.Scripts.Infrastructure.States.StateInfrastructure;
 using Source.Scripts.Infrastructure.States.StateMachine;
 using UnityEngine;
 
@@ -6,17 +10,42 @@ namespace Source.Scripts.Infrastructure.States.GameStates
 {
   public class BootstrapState : SimpleState
   {
-    private readonly IGameStateMachine _stateMachine;
+    private readonly Container _container;
 
-    public BootstrapState(IGameStateMachine stateMachine)
+    public BootstrapState(Container container) => 
+      _container = container;
+
+    public override void Enter() => 
+      OnEnter().Forget();
+
+    private async UniTaskVoid OnEnter()
     {
-      _stateMachine = stateMachine;
+      await Initialize();
+      
+      _container
+        .Resolve<IGameStateMachine>()
+        .Enter<LoadProgressState>();
     }
-    
-    public override void Enter()
+
+    private async UniTask Initialize()
     {
-      Debug.Log("Bootstrap state entered");
-      _stateMachine.Enter<LoadProgressState>();
+      IAssetDownloadService downloadService = _container.Resolve<IAssetDownloadService>();
+      await downloadService.InitializeDownloadDataAsync();
+      float downloadSize = downloadService.GetDownloadSizeMb();
+      
+      Debug.Log($"Download size is {downloadSize} Mb");
+
+      if (downloadSize > 0)
+        await downloadService.UpdateContentAsync();
+
+      IAssetDownloadReporter reporter = _container.Resolve<IAssetDownloadReporter>();
+
+      reporter.ProgressUpdated += DisplayDownloadProgress;
+    }
+
+    private void DisplayDownloadProgress(float value)
+    {
+      Debug.Log(">>>>>>>>>>> Download Progress " + value);
     }
   }
 }

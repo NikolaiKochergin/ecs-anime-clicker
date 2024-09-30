@@ -79,3 +79,4 @@ src/CustomGenerators/CustomGenerators/KSyndicate.CustomGenerators.Plugins/bin
 # Temporary auto-generated Android Assets
 /src/ecs-anime-clicker/[Aa]ssets/[Ss]treamingAssets/aa.meta
 /src/ecs-anime-clicker/[Aa]ssets/[Ss]treamingAssets/aa/*
+src/ecs-anime-clicker/ServerData/

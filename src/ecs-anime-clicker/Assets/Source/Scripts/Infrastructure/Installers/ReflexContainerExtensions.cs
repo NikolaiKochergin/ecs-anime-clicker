@@ -5,6 +5,7 @@ using RSG;
 using Source.Scripts.Gameplay.Common.Random;
 using Source.Scripts.Gameplay.Common.Time;
 using Source.Scripts.Gameplay.Input.Service;
+using Source.Scripts.Infrastructure.AssetManagement;
 using Source.Scripts.Infrastructure.Identifiers;
 using Source.Scripts.Infrastructure.Loading;
 using Source.Scripts.Infrastructure.States.Factory;
@@ -24,9 +25,12 @@ namespace Source.Scripts.Infrastructure.Installers
     public static ContainerBuilder BindInfrastructureServices(this ContainerBuilder builder) =>
       builder
         .AddSingleton(typeof(IdentifierService), typeof(IIdentifierService));
-    
+
     public static ContainerBuilder BindAssetManagementServices(this ContainerBuilder builder) =>
-      builder;
+      builder
+        .AddSingleton(typeof(AssetProvider), typeof(IAssetProvider))
+        .AddSingleton(typeof(AssetDownloadService), typeof(IAssetDownloadService))
+        .AddSingleton(typeof(AssetDownloadReporter), typeof(IAssetDownloadReporter));
 
     public static ContainerBuilder BindCommonServices(this ContainerBuilder builder) =>
       builder
