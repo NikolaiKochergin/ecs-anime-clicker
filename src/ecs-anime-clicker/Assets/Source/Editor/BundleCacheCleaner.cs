@@ -5,7 +5,7 @@ namespace Source.Editor
 {
   public class BundleCacheCleaner
   {
-    [MenuItem("Tool/Clear Addressable bundles cache")]
+    [MenuItem("Tools/Clear Addressable bundles cache")]
     private static void ClearBundleCache()
     {
       Caching.ClearCache();

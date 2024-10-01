@@ -19,6 +19,8 @@ namespace Source.Scripts.Infrastructure.States.GameStates
     {
       _inputFeature = _systems.Create<InputFeature>();
       _inputFeature.Initialize();
+      
+      Debug.Log("Load Progress State");
     }
 
     protected override void OnUpdate()

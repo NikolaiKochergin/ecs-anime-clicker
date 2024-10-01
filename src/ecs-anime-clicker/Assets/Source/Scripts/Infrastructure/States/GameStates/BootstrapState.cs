@@ -1,5 +1,4 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Reflex.Core;
 using Source.Scripts.Infrastructure.AssetManagement;
 using Source.Scripts.Infrastructure.States.StateInfrastructure;
@@ -35,17 +34,18 @@ namespace Source.Scripts.Infrastructure.States.GameStates
       
       Debug.Log($"Download size is {downloadSize} Mb");
 
+      IAssetDownloadReporter reporter = _container.Resolve<IAssetDownloadReporter>();
+      
+      reporter.ProgressUpdated += DisplayDownloadProgress;
       if (downloadSize > 0)
         await downloadService.UpdateContentAsync();
 
-      IAssetDownloadReporter reporter = _container.Resolve<IAssetDownloadReporter>();
+      return;
 
-      reporter.ProgressUpdated += DisplayDownloadProgress;
-    }
-
-    private void DisplayDownloadProgress(float value)
-    {
-      Debug.Log(">>>>>>>>>>> Download Progress " + value);
+      void DisplayDownloadProgress()
+      {
+        Debug.Log(">>>>>>>>>>> Download Progress " + reporter.Progress);
+      }
     }
   }
 }

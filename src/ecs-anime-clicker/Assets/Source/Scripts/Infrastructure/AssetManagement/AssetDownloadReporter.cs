@@ -7,7 +7,7 @@ namespace Source.Scripts.Infrastructure.AssetManagement
   {
     private const float UpdateThreshold = 0.01f;
     public float Progress { get; private set; }
-    public event Action<float> ProgressUpdated;
+    public event Action ProgressUpdated;
     
     public void Report(float value)
     {
@@ -15,7 +15,7 @@ namespace Source.Scripts.Infrastructure.AssetManagement
         return;
       
       Progress = value;
-      ProgressUpdated?.Invoke(Progress);
+      ProgressUpdated?.Invoke();
     }
 
     public void Reset() => 
