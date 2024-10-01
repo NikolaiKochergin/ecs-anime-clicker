@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 8d81e53f169b21941a0f09a42fae6f22
   m_currentHash:
     serializedVersion: 2
-    Hash: 9b54366ad4db4ea137102d2e6d3fbbdb
+    Hash: 5609d6515f930d118dc40252870b65cf
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
+    - remote
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: a7658069c7109874f96752dcdb066022, type: 2}
@@ -115,8 +116,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 424ce5d94bd5d4b4496a919de4a66e76, type: 2}
   - {fileID: 11400000, guid: c7499e4d85edef84dbcf59a60afbfc60, type: 2}
   - {fileID: 11400000, guid: c9c780d2a28a21644a95462c0e2e3d64, type: 2}
-  - {fileID: 11400000, guid: 9c11db350211c664999c7316c33e72d5, type: 2}
-  m_ActiveProfileId: c322713a615a1ef449bb16c7c41f1bba
+  - {fileID: 11400000, guid: f77746ed4860b5c4291798365877609d, type: 2}
+  m_ActiveProfileId: a206efe0872c05e46a34f6e9e2f4869c
   m_HostingServicesManager:
     m_HostingServiceInfos:
     - classRef: UnityEditor.AddressableAssets.HostingServices.HttpHostingService,
@@ -133,7 +134,7 @@ MonoBehaviour:
           m_Key: HostingServiceUploadSpeed
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.String
-          m_Data: Library/com.unity.addressables/aa/WebGL/WebGL
+          m_Data: ServerData/WebGL;Library/com.unity.addressables/aa/WebGL/WebGL
           m_Key: ContentRoot
         - m_AssemblyName: mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
           m_ClassName: System.Boolean

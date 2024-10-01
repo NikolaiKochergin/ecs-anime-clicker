@@ -20,7 +20,8 @@ MonoBehaviour:
   - m_GUID: b49b6ca8a974f1b4cbfb3687c0a947cc
     m_Address: Girls
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - remote
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3277faa77390f6e4ba1b0e2579dde5a7, type: 2}

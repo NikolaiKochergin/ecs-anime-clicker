@@ -1,9 +1,9 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Source.Editor
+namespace Source.Editor.AddressablesTools
 {
-  public class BundleCacheCleaner
+  public static class BundleCacheCleaner
   {
     [MenuItem("Tools/Clear Addressable bundles cache")]
     private static void ClearBundleCache()

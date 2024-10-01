@@ -29,7 +29,7 @@ namespace Source.Scripts.Infrastructure.Installers
     public static ContainerBuilder BindAssetManagementServices(this ContainerBuilder builder) =>
       builder
         .AddSingleton(typeof(AssetProvider), typeof(IAssetProvider))
-        .AddSingleton(typeof(AssetDownloadService), typeof(IAssetDownloadService))
+        .AddSingleton(typeof(LabeledAssetDownloadService), typeof(IAssetDownloadService))
         .AddSingleton(typeof(AssetDownloadReporter), typeof(IAssetDownloadReporter));
 
     public static ContainerBuilder BindCommonServices(this ContainerBuilder builder) =>

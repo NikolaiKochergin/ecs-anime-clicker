@@ -20,12 +20,14 @@ MonoBehaviour:
   - m_GUID: 87e1c3120e8351240a66ecbe7e14a215
     m_Address: Room
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - remote
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bb008aa02cd8b8d46aea7cd12c661e42
     m_Address: Rooms
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - remote
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3277faa77390f6e4ba1b0e2579dde5a7, type: 2}
