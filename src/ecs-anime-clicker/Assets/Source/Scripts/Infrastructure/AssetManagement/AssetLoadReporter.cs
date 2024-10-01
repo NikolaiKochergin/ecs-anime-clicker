@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Source.Scripts.Infrastructure.AssetManagement
 {
-  public class AssetDownloadReporter : IAssetDownloadReporter
+  public class AssetLoadReporter : IAssetLoadReporter
   {
     private const float UpdateThreshold = 0.01f;
     public float Progress { get; private set; }

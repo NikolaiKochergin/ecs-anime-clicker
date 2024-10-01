@@ -34,7 +34,7 @@ namespace Source.Scripts.Infrastructure.States.GameStates
       
       Debug.Log($"Download size is {downloadSize} Mb");
 
-      IAssetDownloadReporter reporter = _container.Resolve<IAssetDownloadReporter>();
+      IAssetLoadReporter reporter = _container.Resolve<IAssetLoadReporter>();
       
       reporter.ProgressUpdated += DisplayDownloadProgress;
       if (downloadSize > 0)

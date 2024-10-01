@@ -13,13 +13,13 @@ namespace Source.Scripts.Infrastructure.AssetManagement
 {
   public class AssetDownloadService : IAssetDownloadService
   {
-    private readonly IAssetDownloadReporter _downloadReporter;
+    private readonly IAssetLoadReporter _loadReporter;
     private List<IResourceLocator> _catalogLocators;
     private long _downloadSize;
 
-    public AssetDownloadService(IAssetDownloadReporter downloadReporter)
+    public AssetDownloadService(IAssetLoadReporter loadReporter)
     {
-      _downloadReporter = downloadReporter;
+      _loadReporter = loadReporter;
     }
 
     public async UniTask InitializeDownloadDataAsync()
@@ -55,14 +55,14 @@ namespace Source.Scripts.Infrastructure.AssetManagement
     {
       UniTask downloadTask = Addressables
         .DownloadDependenciesAsync(locations, autoReleaseHandle: true)
-        .ToUniTask(progress: _downloadReporter);
+        .ToUniTask(progress: _loadReporter);
 
       await downloadTask;
 
       if (downloadTask.Status.IsFaulted()) 
         Debug.LogError("Error while downloading catalog dependencies");
 
-      _downloadReporter.Reset();
+      _loadReporter.Reset();
     }
     
     private async UniTask DownloadContentWithPreciseProgress(IList<IResourceLocation> locations)
@@ -72,17 +72,17 @@ namespace Source.Scripts.Infrastructure.AssetManagement
       while (!downloadHandle.IsDone && downloadHandle.IsValid())
       {
         await UniTask.Delay(100);
-        _downloadReporter.Report(downloadHandle.GetDownloadStatus().Percent);
+        _loadReporter.Report(downloadHandle.GetDownloadStatus().Percent);
       }
       
-      _downloadReporter.Report(1f);
+      _loadReporter.Report(1f);
       if (downloadHandle.Status == AsyncOperationStatus.Failed) 
         Debug.LogError("Error while downloading catalog dependencies");
       
       if(downloadHandle.IsValid())
         Addressables.Release(downloadHandle);
       
-      _downloadReporter.Reset();
+      _loadReporter.Reset();
     }
 
     private async UniTask UpdateCatalogsAsync()

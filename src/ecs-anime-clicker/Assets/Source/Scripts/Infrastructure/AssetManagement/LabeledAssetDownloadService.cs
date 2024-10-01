@@ -15,12 +15,12 @@ namespace Source.Scripts.Infrastructure.AssetManagement
   {
     public const string RemoteLabel = "remote";
     
-    private readonly IAssetDownloadReporter _downloadReporter;
+    private readonly IAssetLoadReporter _loadReporter;
     private long _downloadSize;
 
-    public LabeledAssetDownloadService(IAssetDownloadReporter downloadReporter)
+    public LabeledAssetDownloadService(IAssetLoadReporter loadReporter)
     {
-      _downloadReporter = downloadReporter;
+      _loadReporter = loadReporter;
     }
 
     public async UniTask InitializeDownloadDataAsync()
@@ -42,17 +42,17 @@ namespace Source.Scripts.Infrastructure.AssetManagement
         while (!downloadHandle.IsDone && downloadHandle.IsValid())
         {
           await UniTask.Delay(100);
-          _downloadReporter.Report(downloadHandle.GetDownloadStatus().Percent);
+          _loadReporter.Report(downloadHandle.GetDownloadStatus().Percent);
         }
       
-        _downloadReporter.Report(1f);
+        _loadReporter.Report(1f);
         if (downloadHandle.Status == AsyncOperationStatus.Failed) 
           Debug.LogError("Error while downloading catalog dependencies");
       
         if(downloadHandle.IsValid())
           Addressables.Release(downloadHandle);
       
-        _downloadReporter.Reset();
+        _loadReporter.Reset();
       }
       catch (Exception e)
       {

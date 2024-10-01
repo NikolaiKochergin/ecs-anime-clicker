@@ -2,7 +2,7 @@
 
 namespace Source.Scripts.Infrastructure.AssetManagement
 {
-  public interface IAssetDownloadReporter : IProgress<float>
+  public interface IAssetLoadReporter : IProgress<float>
   {
     float Progress { get; }
     event Action ProgressUpdated;

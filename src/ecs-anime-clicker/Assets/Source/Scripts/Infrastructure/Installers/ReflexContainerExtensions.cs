@@ -30,7 +30,7 @@ namespace Source.Scripts.Infrastructure.Installers
       builder
         .AddSingleton(typeof(AssetProvider), typeof(IAssetProvider))
         .AddSingleton(typeof(LabeledAssetDownloadService), typeof(IAssetDownloadService))
-        .AddSingleton(typeof(AssetDownloadReporter), typeof(IAssetDownloadReporter));
+        .AddSingleton(typeof(AssetLoadReporter), typeof(IAssetLoadReporter));
 
     public static ContainerBuilder BindCommonServices(this ContainerBuilder builder) =>
       builder
