@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using Source.Scripts.Common.Extensions;
@@ -40,7 +41,14 @@ namespace Source.Scripts.Infrastructure.AssetManagement
       if (locations.IsNullOrEmpty())
         return;
       
-      await DownloadContentWithPreciseProgress(locations);
+      try
+      {
+        await DownloadContentWithPreciseProgress(locations);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine(e);
+      }
     }
 
     private async UniTask DownloadContent(IList<IResourceLocation> locations)
