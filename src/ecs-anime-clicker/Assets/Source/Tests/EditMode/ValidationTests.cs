@@ -11,16 +11,22 @@ namespace Source.Tests.EditMode
 {
   public class ValidationTests
   {
-    [Test]
-    public void AllGameObjectsShouldNotHaveMissingScripts()
+    [TestCase("Assets/Source/Scenes/Boot.unity")]
+    [TestCase("Assets/Source/Scenes/Room.unity")]
+    [TestCase("Assets/Source/Scenes/Room 1.unity")]
+    public void AllGameObjectsShouldNotHaveMissingScripts(string scenePath)
     {
-      IEnumerable<string> errors = 
-        from scene in OpenProjectScenes() 
-        from gameObject in GetAllGameObject(scene) 
-        where HasMissingScripts(gameObject) 
-        select $"Game object {gameObject.name} from scene {scene.name} has missing component(s).";
+      Scene scene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Additive);
 
-      errors.Should().BeEmpty();
+      List<string> gameObjectsWithMissingScripts =
+        GetAllGameObject(scene)
+          .Where(HasMissingScripts)
+          .Select(gameObject => gameObject.name)
+          .ToList();
+      
+      EditorSceneManager.CloseScene(scene, removeScene: true);
+
+      gameObjectsWithMissingScripts.Should().BeEmpty();
     }
 
     private static bool HasMissingScripts(GameObject gameObject) =>
