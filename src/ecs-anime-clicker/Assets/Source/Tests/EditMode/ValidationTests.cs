@@ -11,9 +11,7 @@ namespace Source.Tests.EditMode
 {
   public class ValidationTests
   {
-    [TestCase("Assets/Source/Scenes/Boot.unity")]
-    [TestCase("Assets/Source/Scenes/Room.unity")]
-    [TestCase("Assets/Source/Scenes/Room 1.unity")]
+    [TestCaseSource(nameof(AllScenePaths))]
     public void AllGameObjectsShouldNotHaveMissingScripts(string scenePath)
     {
       Scene scene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Additive);
@@ -32,27 +30,10 @@ namespace Source.Tests.EditMode
     private static bool HasMissingScripts(GameObject gameObject) =>
       GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(gameObject) > 0;
 
-    private static IEnumerable<Scene> OpenProjectScenes()
-    {
-      IEnumerable<string> scenePaths = AssetDatabase
+    private static IEnumerable<string> AllScenePaths() =>
+      AssetDatabase
         .FindAssets("t:Scene", new[] {"Assets"})
         .Select(AssetDatabase.GUIDToAssetPath);
-
-      foreach (string scenePath in scenePaths)
-      {
-        Scene scene = SceneManager.GetSceneByPath(scenePath);
-        if (scene.isLoaded)
-        {
-          yield return scene;
-        }
-        else
-        {
-          Scene openedScene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Additive);
-          yield return openedScene;
-          EditorSceneManager.CloseScene(openedScene, removeScene: true);
-        }
-      }
-    }
 
     private static IEnumerable<GameObject> GetAllGameObject(Scene scene)
     {
