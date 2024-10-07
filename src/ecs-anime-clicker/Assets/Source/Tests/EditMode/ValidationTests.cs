@@ -1,34 +1,37 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using NUnit.Framework;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Source.Tools.Editor
+namespace Source.Tests.EditMode
 {
-  public static class Validator
+  public class ValidationTests
   {
     private static ILogger Logger => Debug.unityLogger;
-    
-    [MenuItem("Tools/💔 Missing Components")]
-    public static void FindMissingComponents()
+
+    [Test]
+    public void ValidationTestsSimplePasses()
     {
-      Logger.Log("Searching for Missing Components...");
+      IEnumerable<string> errors = 
+        from scene in OpenProjectScenes() 
+        from gameObject in GetAllGameObject(scene) 
+        where HasMissingScripts(gameObject) 
+        select $"Game object {gameObject.name} from scene {scene.name} has missing component(s).";
 
-      foreach (Scene scene in OpenProjectScenes())
-      foreach (GameObject gameObject in GetAllGameObject(scene))
-        if (HasMissingScripts(gameObject))
-          Logger.LogError("💔", $"Game object {gameObject.name} from scene {scene.name} has missing component(s).");
-      return;
-
-      static bool HasMissingScripts(GameObject gameObject) => GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(gameObject) > 0;
+      Assert.That(errors, Is.Empty);
     }
+
+    private static bool HasMissingScripts(GameObject gameObject) =>
+      GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(gameObject) > 0;
 
     private static IEnumerable<Scene> OpenProjectScenes()
     {
       IEnumerable<string> scenePaths = AssetDatabase
-        .FindAssets("t:Scene", new[] { "Assets" })
+        .FindAssets("t:Scene", new[] {"Assets"})
         .Select(AssetDatabase.GUIDToAssetPath);
 
       foreach (string scenePath in scenePaths)
@@ -54,10 +57,10 @@ namespace Source.Tools.Editor
       while (gameObjectQueue.Count > 0)
       {
         GameObject gameObject = gameObjectQueue.Dequeue();
-        
+
         yield return gameObject;
 
-        foreach (Transform child in gameObject.transform) 
+        foreach (Transform child in gameObject.transform)
           gameObjectQueue.Enqueue(child.gameObject);
       }
     }
