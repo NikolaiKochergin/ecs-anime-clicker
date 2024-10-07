@@ -11,7 +11,7 @@ namespace Source.Tests.EditMode
   public class ValidationTests
   {
     [Test]
-    public void ValidationTestsSimplePasses()
+    public void AllGameObjectsShouldNotHaveMissingScripts()
     {
       IEnumerable<string> errors = 
         from scene in OpenProjectScenes() 
