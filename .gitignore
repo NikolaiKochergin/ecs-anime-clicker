@@ -80,3 +80,4 @@ src/CustomGenerators/CustomGenerators/KSyndicate.CustomGenerators.Plugins/bin
 /src/ecs-anime-clicker/[Aa]ssets/[Ss]treamingAssets/aa.meta
 /src/ecs-anime-clicker/[Aa]ssets/[Ss]treamingAssets/aa/*
 src/ecs-anime-clicker/ServerData/
+src/ecs-anime-clicker/artifacts/
