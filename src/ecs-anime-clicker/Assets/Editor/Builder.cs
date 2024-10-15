@@ -15,7 +15,7 @@ namespace Editor
         new BuildPlayerOptions()
         {
           target = BuildTarget.WebGL,
-          locationPathName = "artifacts",
+          locationPathName = "../../artifacts",
           scenes = EditorBuildSettings.scenes.Select(scene => scene.path).ToArray(),
         });
 
