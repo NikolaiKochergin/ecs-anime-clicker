@@ -16,7 +16,7 @@ Task("Build-WebGL")
         2022, 3, 48, 'f', 1,
         new UnityEditorArguments
         {
-            ProjectPath = "../ecs-anime-clicker",
+            ProjectPath = "./src/ecs-anime-clicker",
             ExecuteMethod = "Editor.Builder.BuildWebGL",
             BuildTarget = BuildTarget.WebGL,
             LogFile = "./artifacts/unity.log",
