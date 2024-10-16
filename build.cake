@@ -5,6 +5,7 @@ var target = Argument("target", "Build-WebGL");
 Task("Clean-Artifacts")
     .Does(() =>
 {
+    Console.WriteLine("Build will be here.");
     CleanDirectory($"./artifacts");
 });
 
