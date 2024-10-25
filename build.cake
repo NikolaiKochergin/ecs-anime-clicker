@@ -5,16 +5,13 @@ var target = Argument("target", "Build-WebGL");
 Task("Clean-Artifacts")
     .Does(() =>
 {
-    Console.WriteLine("Clear Directory.");
-    //CleanDirectory($"./artifacts");
+    CleanDirectory($"./artifacts");
 });
 
 Task("Build-WebGL")
     .IsDependentOn("Clean-Artifacts")
     .Does(() =>
 {
-    Console.WriteLine("Build will be here.");
-    /*
     UnityEditor(
         2022, 3, 48, 'f', 1,
         new UnityEditorArguments
@@ -29,7 +26,6 @@ Task("Build-WebGL")
             RealTimeLog = true,
         }
         );
-        */
 });
 
 RunTarget(target);
