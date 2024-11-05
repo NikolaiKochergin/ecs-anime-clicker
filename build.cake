@@ -26,6 +26,7 @@ Task("Build-WebGL")
 {
     UnityEditor(
         //2022, 3, 48, 'f', 1,
+        "/home/teamcity/Unity/Hub/Editor/Unity-2022.3.48/Editor/Unity",
         new UnityEditorArguments
         {
             ProjectPath = "./src/ecs-anime-clicker",
