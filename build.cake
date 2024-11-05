@@ -7,7 +7,7 @@ Task("Clean-Artifacts")
 {
     CleanDirectory($"./artifacts");
 });
-
+/*
 Task("Find-Unity-Editor-2022.3.48")
     .Does(() =>
 {
@@ -17,14 +17,15 @@ Task("Find-Unity-Editor-2022.3.48")
     else
         Warning("Cannot find Unity Editor 2022.3.48");  
 });
+*/
 
 Task("Build-WebGL")
     .IsDependentOn("Clean-Artifacts")
-    .IsDependentOn("Find-Unity-Editor-2022.3.48")
+    //.IsDependentOn("Find-Unity-Editor-2022.3.48")
     .Does(() =>
 {
     UnityEditor(
-        2022, 3, 48, 'f', 1,
+        //2022, 3, 48, 'f', 1,
         new UnityEditorArguments
         {
             ProjectPath = "./src/ecs-anime-clicker",
