@@ -8,11 +8,11 @@
       "hash": "2e0917428bc49a88f8bb90f3cbdeabd4d978ae30"
     },
     "com.gustavopsantos.reflex": {
-      "version": "https://github.com/gustavopsantos/reflex.git?path=/Assets/Reflex/#9.0.0",
+      "version": "https://github.com/gustavopsantos/reflex.git?path=/Assets/Reflex/#9.0.1",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "935f1cefcf48b5a48bbba0ae4c69947acf1d8520"
+      "hash": "f3618e0697d979051efe866cafa954bdf0b7b46e"
     },
     "com.unity.addressables": {
       "version": "1.22.2",
