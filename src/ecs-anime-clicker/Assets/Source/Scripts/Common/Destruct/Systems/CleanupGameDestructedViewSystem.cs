@@ -1,8 +1,10 @@
 ﻿using Entitas;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace Source.Scripts.Common.Destruct.Systems
 {
+  [Preserve]
   public class CleanupGameDestructedViewSystem : ICleanupSystem
   {
     private readonly IGroup<GameEntity> _entities;

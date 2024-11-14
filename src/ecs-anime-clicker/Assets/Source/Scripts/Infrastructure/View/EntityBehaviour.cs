@@ -5,18 +5,18 @@ namespace Source.Scripts.Infrastructure.View
 {
   public class EntityBehaviour : MonoBehaviour, IEntityView
   {
-    private GameEntity _entity;
-    
-    public GameEntity Entity => _entity;
-    
-    public void SetEntity(GameEntity entity)
+    public GameEntity Entity { get; private set; }
+
+    public EntityBehaviour SetEntity(GameEntity entity)
     {
-      _entity = entity;
-      _entity.AddView(this);
-      _entity.Retain(this);
+      Entity = entity;
+      Entity.AddView(this);
+      Entity.Retain(this);
 
       foreach (IEntityComponentRegistrar registrar in GetComponentsInChildren<IEntityComponentRegistrar>()) 
         registrar.RegisterComponents();
+
+      return this;
     }
 
     public void ReleaseEntity()
@@ -24,8 +24,8 @@ namespace Source.Scripts.Infrastructure.View
       foreach (IEntityComponentRegistrar registrar in GetComponentsInChildren<IEntityComponentRegistrar>()) 
         registrar.UnregisterComponents();
       
-      _entity.Release(this);
-      _entity = null;
+      Entity.Release(this);
+      Entity = null;
     }
   }
 }

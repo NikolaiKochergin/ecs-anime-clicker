@@ -12,6 +12,7 @@ using Source.Scripts.Infrastructure.States.Factory;
 using Source.Scripts.Infrastructure.States.GameStates;
 using Source.Scripts.Infrastructure.States.StateMachine;
 using Source.Scripts.Infrastructure.Systems;
+using Source.Scripts.Infrastructure.View.Factory;
 using UnityEngine;
 
 namespace Source.Scripts.Infrastructure.Installers
@@ -60,9 +61,10 @@ namespace Source.Scripts.Infrastructure.Installers
     
     public static ContainerBuilder BindCameraProvider(this ContainerBuilder builder) => 
       builder;
-    
-    public static ContainerBuilder BindGameplayFactories(this ContainerBuilder builder) => 
-      builder;
+
+    public static ContainerBuilder BindGameplayFactories(this ContainerBuilder builder) =>
+      builder
+        .AddSingleton(typeof(EntityViewFactory), typeof(IEntityViewFactory));
     
     public static ContainerBuilder BindEntityIndices(this ContainerBuilder builder) => 
       builder;

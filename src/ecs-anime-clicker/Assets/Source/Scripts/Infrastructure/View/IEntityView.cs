@@ -7,7 +7,7 @@ namespace Source.Scripts.Infrastructure.View
     GameEntity Entity { get; }
     GameObject gameObject { get; }
     
-    void SetEntity(GameEntity entity);
+    EntityBehaviour SetEntity(GameEntity entity);
     void ReleaseEntity();
   }
 }

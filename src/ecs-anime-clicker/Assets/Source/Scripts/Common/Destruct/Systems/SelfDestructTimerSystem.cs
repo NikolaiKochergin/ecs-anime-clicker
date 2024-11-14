@@ -2,9 +2,11 @@
 using Entitas;
 using Source.Scripts.Common.Extensions;
 using Source.Scripts.Gameplay.Common.Time;
+using UnityEngine.Scripting;
 
 namespace Source.Scripts.Common.Destruct.Systems
 {
+  [Preserve]
   public class SelfDestructTimerSystem : IExecuteSystem
   {
     private readonly ITimeService _time;

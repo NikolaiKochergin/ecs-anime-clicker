@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using Entitas;
+using UnityEngine.Scripting;
 
 namespace Source.Scripts.Common.Destruct.Systems
 {
+  [Preserve]
   public class CleanupMetaDestructedSystem : ICleanupSystem
   {
     private readonly IGroup<MetaEntity> _entities;
