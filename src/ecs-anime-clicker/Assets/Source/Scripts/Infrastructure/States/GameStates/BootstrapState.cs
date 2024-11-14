@@ -1,6 +1,10 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System.Linq;
+using Cysharp.Threading.Tasks;
 using Reflex.Core;
 using Source.Scripts.Infrastructure.AssetManagement;
+using Source.Scripts.Infrastructure.Services;
+using Source.Scripts.Infrastructure.Services.GameSettings;
+using Source.Scripts.Infrastructure.Services.StaticData;
 using Source.Scripts.Infrastructure.States.StateInfrastructure;
 using Source.Scripts.Infrastructure.States.StateMachine;
 using UnityEngine;
@@ -19,12 +23,37 @@ namespace Source.Scripts.Infrastructure.States.GameStates
 
     private async UniTaskVoid OnEnter()
     {
-      //await Initialize();
+      await Initialize();
+
+      await LoadStaticData();
+      await InitializeServices();
+      await LoadGameSettings();
       
+      ToLoadProgress();
+    }
+
+    private void ToLoadProgress() =>
       _container
         .Resolve<IGameStateMachine>()
-        .Enter<GameLoopState>();
-    }
+        .Enter<LoadProgressState>();
+
+    private async UniTask LoadStaticData() =>
+      await UniTask
+        .WhenAll(Enumerable
+          .Select(_container
+            .All<IStaticDataLoader>(), sd => sd
+            .Load()));
+    
+    private async UniTask InitializeServices() =>
+      await UniTask
+        .WhenAll(Enumerable
+          .Select(_container
+            .All<IInitializable>(), i => i
+            .Initialize()));
+    
+    private async UniTask LoadGameSettings() => 
+      await _container.Resolve<IGameSettingsService>().Load();
+
 
     private async UniTask Initialize()
     {
@@ -37,8 +66,9 @@ namespace Source.Scripts.Infrastructure.States.GameStates
       IAssetLoadReporter reporter = _container.Resolve<IAssetLoadReporter>();
       
       reporter.ProgressUpdated += DisplayDownloadProgress;
-      if (downloadSize > 0)
-        await downloadService.UpdateContentAsync();
+      
+      // if (downloadSize > 0)
+      //   await downloadService.UpdateContentAsync();
 
       return;
 

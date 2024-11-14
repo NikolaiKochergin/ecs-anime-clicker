@@ -1,32 +1,35 @@
-﻿using Source.Scripts.Gameplay.Input;
-using Source.Scripts.Infrastructure.States.StateInfrastructure;
-using Source.Scripts.Infrastructure.Systems;
-using UnityEngine;
+﻿using Source.Scripts.Infrastructure.States.StateInfrastructure;
+using Source.Scripts.Infrastructure.States.StateMachine;
+using Source.Scripts.Progress.SaveLoad;
 
 namespace Source.Scripts.Infrastructure.States.GameStates
 {
-  public class LoadProgressState : EndOfFrameExitState
+  public class LoadProgressState : SimpleState
   {
-    private readonly ISystemFactory _systems;
-    private InputFeature _inputFeature;
+    private readonly IGameStateMachine _stateMachine;
+    private readonly ISaveLoadService _saveLoad;
 
-    public LoadProgressState(ISystemFactory systems)
+    public LoadProgressState(
+      IGameStateMachine stateMachine,
+      ISaveLoadService saveLoad)
     {
-      _systems = systems;
+      _stateMachine = stateMachine;
+      _saveLoad = saveLoad;
     }
     
     public override void Enter()
     {
-      _inputFeature = _systems.Create<InputFeature>();
-      _inputFeature.Initialize();
+      InitializeProgress();
       
-      Debug.Log("Load Progress State");
+      _stateMachine.Enter<GameLoopState>();
     }
 
-    protected override void OnUpdate()
+    private void InitializeProgress()
     {
-      _inputFeature.Execute();
-      _inputFeature.Cleanup();
+      if (_saveLoad.HasSavedProgress)
+        _saveLoad.LoadMetaProgress();
+      else
+        _saveLoad.CreateProgress();
     }
   }
 }

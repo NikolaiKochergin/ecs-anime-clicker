@@ -1,4 +1,6 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Cysharp.Threading.Tasks;
 using Reflex.Core;
 using RSG;
 using Source.Scripts.Gameplay.Common.Random;
@@ -7,11 +9,13 @@ using Source.Scripts.Gameplay.Input.Service;
 using Source.Scripts.Infrastructure.AssetManagement;
 using Source.Scripts.Infrastructure.Identifiers;
 using Source.Scripts.Infrastructure.Loading;
+using Source.Scripts.Infrastructure.Services.GameSettings;
 using Source.Scripts.Infrastructure.States.Factory;
 using Source.Scripts.Infrastructure.States.GameStates;
 using Source.Scripts.Infrastructure.States.StateMachine;
 using Source.Scripts.Infrastructure.Systems;
 using Source.Scripts.Infrastructure.View.Factory;
+using Source.Scripts.Progress.SaveLoad;
 using UnityEngine;
 
 namespace Source.Scripts.Infrastructure.Installers
@@ -48,7 +52,8 @@ namespace Source.Scripts.Infrastructure.Installers
 
     private static void BindInfrastructureServices(ContainerBuilder builder) =>
       builder
-        .AddSingleton(typeof(IdentifierService), typeof(IIdentifierService));
+        .AddSingleton(typeof(IdentifierService), typeof(IIdentifierService))
+        .AddSingleton(typeof(GameSettingsService), typeof(IGameSettingsService));
 
     private static void BindAssetManagementServices(ContainerBuilder builder) =>
       builder
@@ -97,9 +102,9 @@ namespace Source.Scripts.Infrastructure.Installers
     {
     }
 
-    private static void BindProgressServices(ContainerBuilder builder)
-    {
-    }
+    private static void BindProgressServices(ContainerBuilder builder) =>
+      builder
+        .AddSingleton(typeof(SaveLoadService), typeof(ISaveLoadService));
 
     private static void BindStateMachine(ContainerBuilder builder) =>
       builder
@@ -122,7 +127,7 @@ namespace Source.Scripts.Infrastructure.Installers
     private static void RunGame(Container container)
     {
       EnterToBootstrapState(container);
-      RunTickable(container).Forget();
+      RunTickables(container).Forget();
     }
 
     private static void EnterToBootstrapState(Container container) =>
@@ -130,11 +135,12 @@ namespace Source.Scripts.Infrastructure.Installers
         .Resolve<IGameStateMachine>()
         .Enter<BootstrapState>();
 
-    private static async UniTaskVoid RunTickable(Container container)
+    private static async UniTaskVoid RunTickables(Container container)
     {
+      List<ITickable> tickables = container.All<ITickable>().ToList();
       while (Application.isPlaying)
       {
-        foreach (ITickable tickable in container.All<ITickable>())
+        foreach (ITickable tickable in tickables)
           tickable.Tick();
 
         await UniTask.NextFrame();
