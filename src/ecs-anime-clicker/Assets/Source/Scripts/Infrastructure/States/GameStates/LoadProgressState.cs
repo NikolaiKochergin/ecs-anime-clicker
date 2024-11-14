@@ -1,4 +1,6 @@
-﻿using Source.Scripts.Infrastructure.States.StateInfrastructure;
+﻿using Source.Scripts.Common.Entity;
+using Source.Scripts.Common.Extensions;
+using Source.Scripts.Infrastructure.States.StateInfrastructure;
 using Source.Scripts.Infrastructure.States.StateMachine;
 using Source.Scripts.Progress.SaveLoad;
 
@@ -29,7 +31,16 @@ namespace Source.Scripts.Infrastructure.States.GameStates
       if (_saveLoad.HasSavedProgress)
         _saveLoad.LoadMetaProgress();
       else
-        _saveLoad.CreateProgress();
+        CreateNewProgress();
+    }
+
+    private void CreateNewProgress()
+    {
+      _saveLoad.CreateProgress();
+
+      CreateMetaEntity.Empty()
+        .With(x => x.isWallet = true)
+        .AddGold(10);
     }
   }
 }
