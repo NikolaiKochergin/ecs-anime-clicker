@@ -19,11 +19,11 @@ namespace Source.Scripts.Infrastructure.States.GameStates
 
     private async UniTaskVoid OnEnter()
     {
-      await Initialize();
+      //await Initialize();
       
       _container
         .Resolve<IGameStateMachine>()
-        .Enter<LoadProgressState>();
+        .Enter<GameLoopState>();
     }
 
     private async UniTask Initialize()
