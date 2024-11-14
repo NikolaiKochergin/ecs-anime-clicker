@@ -14,8 +14,9 @@ public static class GameComponentsLookup {
     public const int ViewAssetReference = 3;
     public const int ViewPrefab = 4;
     public const int Id = 5;
+    public const int Room = 6;
 
-    public const int TotalComponents = 6;
+    public const int TotalComponents = 7;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -23,7 +24,8 @@ public static class GameComponentsLookup {
         "View",
         "ViewAssetReference",
         "ViewPrefab",
-        "Id"
+        "Id",
+        "Room"
     };
 
     public static readonly System.Type[] componentTypes = {
@@ -32,6 +34,7 @@ public static class GameComponentsLookup {
         typeof(Source.Scripts.Common.View),
         typeof(Source.Scripts.Common.ViewAssetReference),
         typeof(Source.Scripts.Common.ViewPrefab),
-        typeof(Source.Scripts.Gameplay.Common.Id)
+        typeof(Source.Scripts.Gameplay.Common.Id),
+        typeof(Source.Scripts.Gameplay.Features.Room.Room)
     };
 }

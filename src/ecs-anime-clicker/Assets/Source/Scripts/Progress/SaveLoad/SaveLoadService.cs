@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Entitas;
 using Source.Scripts.Infrastructure.Serialization;
 using Source.Scripts.Progress.Data;
 using UnityEngine;
@@ -28,8 +29,8 @@ namespace Source.Scripts.Progress.SaveLoad
 
     public void SaveProgress()
     {
-      PreserveMetaEntities();
-      PreserveGameEntities();
+      PreserveEntities(_meta, out _progressData.EntityData.MetaEntitySnapshots);
+      PreserveEntities(_game, out _progressData.EntityData.GameEntitySnapshots);
       PlayerPrefs.SetString(ProgressKey, _progressData.ToJson());
       PlayerPrefs.Save();
     }
@@ -38,50 +39,30 @@ namespace Source.Scripts.Progress.SaveLoad
       HydrateProgress(PlayerPrefs.GetString(ProgressKey));
 
     public void LoadGameProgress() => 
-      HydrateGameEntities();
+      HydrateEntities(_game, _progressData.EntityData.GameEntitySnapshots);
 
     private void HydrateProgress(string serializedProgress)
     {
       _progressData = serializedProgress.FromJson<ProgressData>();
-      HydrateMetaEntities();
+      HydrateEntities(_meta, _progressData.EntityData.MetaEntitySnapshots);
     }
-
-    private void HydrateMetaEntities()
+    
+    private static void HydrateEntities<T>(Context<T> context, List<EntitySnapshot> snapshots) where T : Entity
     {
-      List<EntitySnapshot> snapshots = _progressData.EntityData.MetaEntitySnapshots;
       foreach (EntitySnapshot snapshot in snapshots)
-        _meta
+        context
           .CreateEntity()
           .HydrateWith(snapshot);
     }
     
-    private void HydrateGameEntities()
-    {
-      List<EntitySnapshot> snapshots = _progressData.EntityData.GameEntitySnapshots;
-      foreach (EntitySnapshot snapshot in snapshots)
-        _meta
-          .CreateEntity()
-          .HydrateWith(snapshot);
-    }
-
-    private void PreserveMetaEntities() =>
-      _progressData.EntityData.MetaEntitySnapshots = _meta
-        .GetEntities()
-        .Where(RequiresSave)
-        .Select(e => e.AsSavedEntity())
-        .ToList();
-    
-    private void PreserveGameEntities() =>
-      _progressData.EntityData.GameEntitySnapshots = _game
+    private static void PreserveEntities<T>(Context<T> context, out List<EntitySnapshot> snapshots) where T : Entity =>
+      snapshots = context
         .GetEntities()
         .Where(RequiresSave)
         .Select(e => e.AsSavedEntity())
         .ToList();
 
-    private static bool RequiresSave(MetaEntity e) =>
-      e.GetComponents().Any(c => c is ISavedComponent);
-    
-    private static bool RequiresSave(GameEntity e) =>
+    private static bool RequiresSave(Entity e) =>
       e.GetComponents().Any(c => c is ISavedComponent);
   }
 }
