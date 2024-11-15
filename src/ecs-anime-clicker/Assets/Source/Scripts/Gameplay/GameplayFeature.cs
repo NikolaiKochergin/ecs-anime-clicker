@@ -1,15 +1,23 @@
-﻿using Source.Scripts.Gameplay.Input;
+﻿using Source.Scripts.Common.Destruct;
+using Source.Scripts.Gameplay.Features.Room;
+using Source.Scripts.Gameplay.Input;
 using Source.Scripts.Infrastructure.Systems;
 using Source.Scripts.Infrastructure.View;
+using UnityEngine.Scripting;
 
 namespace Source.Scripts.Gameplay
 {
+  [Preserve]
   public sealed class GameplayFeature : Feature
   {
     public GameplayFeature(ISystemFactory systems)
     {
       Add(systems.Create<InputFeature>());
       Add(systems.Create<BindViewFeature>());
+
+      Add(systems.Create<RoomFeature>());
+      
+      Add(systems.Create<ProcessDestructedFeature>());
     }
   }
 }

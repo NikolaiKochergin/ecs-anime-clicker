@@ -5,11 +5,14 @@ using Reflex.Core;
 using RSG;
 using Source.Scripts.Gameplay.Common.Random;
 using Source.Scripts.Gameplay.Common.Time;
+using Source.Scripts.Gameplay.Features.Room.Factory;
+using Source.Scripts.Gameplay.Features.Room.Service;
 using Source.Scripts.Gameplay.Input.Service;
 using Source.Scripts.Infrastructure.AssetManagement;
 using Source.Scripts.Infrastructure.Identifiers;
 using Source.Scripts.Infrastructure.Loading;
 using Source.Scripts.Infrastructure.Services.GameSettings;
+using Source.Scripts.Infrastructure.Services.StaticData;
 using Source.Scripts.Infrastructure.States.Factory;
 using Source.Scripts.Infrastructure.States.GameStates;
 using Source.Scripts.Infrastructure.States.StateMachine;
@@ -52,6 +55,7 @@ namespace Source.Scripts.Infrastructure.Installers
 
     private static void BindInfrastructureServices(ContainerBuilder builder) =>
       builder
+        .AddSingleton(typeof(StaticDataService), typeof(IStaticDataService), typeof(IStaticDataLoader))
         .AddSingleton(typeof(IdentifierService), typeof(IIdentifierService))
         .AddSingleton(typeof(GameSettingsService), typeof(IGameSettingsService));
 
@@ -71,10 +75,6 @@ namespace Source.Scripts.Infrastructure.Installers
       builder
         .AddSingleton(typeof(SystemFactory), typeof(ISystemFactory));
 
-    private static void BindUIFactories(ContainerBuilder builder)
-    {
-    }
-
     private static void BindContexts(ContainerBuilder builder) =>
       builder
         .AddSingleton(Contexts.sharedInstance)
@@ -82,11 +82,7 @@ namespace Source.Scripts.Infrastructure.Installers
         .AddSingleton(Contexts.sharedInstance.game)
         .AddSingleton(Contexts.sharedInstance.meta);
 
-    private static void BindGameplayServices(ContainerBuilder builder)
-    {
-    }
-
-    private static void BindUIServices(ContainerBuilder builder)
+    private static void BindEntityIndices(ContainerBuilder builder)
     {
     }
 
@@ -94,13 +90,22 @@ namespace Source.Scripts.Infrastructure.Installers
     {
     }
 
-    private static void BindGameplayFactories(ContainerBuilder builder) =>
-      builder
-        .AddSingleton(typeof(EntityViewFactory), typeof(IEntityViewFactory));
-
-    private static void BindEntityIndices(ContainerBuilder builder)
+    private static void BindUIFactories(ContainerBuilder builder)
     {
     }
+
+    private static void BindUIServices(ContainerBuilder builder)
+    {
+    }
+
+    private static void BindGameplayServices(ContainerBuilder builder) =>
+      builder
+        .AddSingleton(typeof(RoomService), typeof(IRoomService), typeof(IGameProgressReader), typeof(IGameProgressWriter));
+
+    private static void BindGameplayFactories(ContainerBuilder builder) =>
+      builder
+        .AddSingleton(typeof(EntityViewFactory), typeof(IEntityViewFactory))
+        .AddSingleton(typeof(RoomFactory), typeof(IRoomFactory));
 
     private static void BindProgressServices(ContainerBuilder builder) =>
       builder

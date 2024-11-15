@@ -1,9 +1,11 @@
 ﻿using Entitas;
 using Source.Scripts.Gameplay.Input.Service;
 using UnityEngine;
+using UnityEngine.Scripting;
 
 namespace Source.Scripts.Gameplay.Input.Systems
 {
+  [Preserve]
   public class EmitInputSystem : IExecuteSystem
   {
     private readonly IInputService _inputService;

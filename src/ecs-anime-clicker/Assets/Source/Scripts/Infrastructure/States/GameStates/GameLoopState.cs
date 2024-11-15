@@ -1,38 +1,59 @@
-﻿using Source.Scripts.Gameplay.Input;
+﻿using Source.Scripts.Gameplay;
+using Source.Scripts.Gameplay.Features.Room.Factory;
 using Source.Scripts.Infrastructure.States.StateInfrastructure;
 using Source.Scripts.Infrastructure.Systems;
 using Source.Scripts.Progress.SaveLoad;
-using UnityEngine;
 
 namespace Source.Scripts.Infrastructure.States.GameStates
 {
-  public class GameLoopState : EndOfFrameExitState
+  public sealed class GameLoopState : EndOfFrameExitState
   {
     private readonly ISystemFactory _systems;
     private readonly ISaveLoadService _saveLoad;
-    private InputFeature _inputFeature;
+    private readonly GameContext _game;
+
+    private GameplayFeature _gameplayFeature;
 
     public GameLoopState(
       ISystemFactory systems,
-      ISaveLoadService saveLoad)
+      ISaveLoadService saveLoad,
+      GameContext game)
     {
       _systems = systems;
       _saveLoad = saveLoad;
+      _game = game;
     }
     
     public override void Enter()
     {
+      _gameplayFeature = _systems.Create<GameplayFeature>();
+      _gameplayFeature.Initialize();
+      
       _saveLoad.LoadGameProgress();
-      
-      _inputFeature = _systems.Create<InputFeature>();
-      _inputFeature.Initialize();
-      
-      Debug.Log("Load Progress State");
     }
     
     protected override void OnUpdate()
     {
-      Debug.Log("Game Loop State Updated");
+      _gameplayFeature.Execute();
+      _gameplayFeature.Cleanup();
+    }
+
+    protected override void ExitOnEndOfFrame()
+    {
+      _gameplayFeature.DeactivateReactiveSystems();
+      _gameplayFeature.ClearReactiveSystems();
+    
+      DestructEntities();
+      
+      _gameplayFeature.Cleanup();
+      _gameplayFeature.TearDown();
+      _gameplayFeature = null;
+    }
+
+    private void DestructEntities()
+    {
+      foreach (GameEntity entity in _game.GetEntities())
+        entity.isDestructed = true;
     }
   }
 }

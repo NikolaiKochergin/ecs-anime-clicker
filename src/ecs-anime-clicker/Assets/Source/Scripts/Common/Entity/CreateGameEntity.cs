@@ -1,6 +1,6 @@
 ﻿namespace Source.Scripts.Common.Entity
 {
-  public static class CreateEntity
+  public static class CreateGameEntity
   {
     public static GameEntity Empty() =>
       Contexts.sharedInstance.game.CreateEntity();

@@ -11,6 +11,7 @@ namespace Source.Scripts.Infrastructure.View
     {
       Add(systems.Create<BindEntityViewFromPrefabSystem>());
       Add(systems.Create<BindEntityViewFromAssetReferenceSystem>());
+      Add(systems.Create<BindEntityViewFromAssetNameSystem>());
     }
   }
 }

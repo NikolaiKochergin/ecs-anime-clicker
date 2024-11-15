@@ -13,13 +13,21 @@ namespace Source.Scripts.Progress.SaveLoad
     
     private readonly MetaContext _meta;
     private readonly GameContext _game;
+    private readonly IEnumerable<IGameProgressReader> _gameProgressReaders;
+    private readonly IEnumerable<IGameProgressWriter> _gameProgressWriters;
 
     private ProgressData _progressData;
 
-    public SaveLoadService(MetaContext meta, GameContext game)
+    public SaveLoadService(
+      MetaContext meta, 
+      GameContext game, 
+      IEnumerable<IGameProgressReader> gameProgressReaders,
+      IEnumerable<IGameProgressWriter> gameProgressWriters)
     {
       _meta = meta;
       _game = game;
+      _gameProgressReaders = gameProgressReaders;
+      _gameProgressWriters = gameProgressWriters;
     }
     
     public bool HasSavedProgress => PlayerPrefs.HasKey(ProgressKey);
@@ -29,6 +37,9 @@ namespace Source.Scripts.Progress.SaveLoad
 
     public void SaveProgress()
     {
+      foreach (IGameProgressWriter progressWriter in _gameProgressWriters)
+        progressWriter.UpdateProgress(_progressData);
+      
       PreserveEntities(_meta, out _progressData.EntityData.MetaEntitySnapshots);
       PreserveEntities(_game, out _progressData.EntityData.GameEntitySnapshots);
       PlayerPrefs.SetString(ProgressKey, _progressData.ToJson());
@@ -38,8 +49,13 @@ namespace Source.Scripts.Progress.SaveLoad
     public void LoadMetaProgress() =>
       HydrateProgress(PlayerPrefs.GetString(ProgressKey));
 
-    public void LoadGameProgress() => 
+    public void LoadGameProgress()
+    {
+      foreach (IGameProgressReader progressReader in _gameProgressReaders)
+        progressReader.LoadProgress(_progressData);
+      
       HydrateEntities(_game, _progressData.EntityData.GameEntitySnapshots);
+    }
 
     private void HydrateProgress(string serializedProgress)
     {

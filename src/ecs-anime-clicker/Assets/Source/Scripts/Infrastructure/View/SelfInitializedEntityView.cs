@@ -17,7 +17,7 @@ namespace Source.Scripts.Infrastructure.View
 
     private void Awake()
     {
-      GameEntity entity = CreateEntity.Empty()
+      GameEntity entity = CreateGameEntity.Empty()
         .AddId(_identifiers.Next());
       
       _entityBehaviour.SetEntity(entity);

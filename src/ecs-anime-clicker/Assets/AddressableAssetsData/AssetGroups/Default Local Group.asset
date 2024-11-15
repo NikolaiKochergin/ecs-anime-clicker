@@ -16,7 +16,17 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 8d81e53f169b21941a0f09a42fae6f22
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 0f4c1aba815641b40ad7b8afcd319669
+    m_Address: RoomsConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2cd8ac3a29a596f4fbac693bedfdfeff
+    m_Address: GameConfig
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3277faa77390f6e4ba1b0e2579dde5a7, type: 2}
   m_SchemaSet:

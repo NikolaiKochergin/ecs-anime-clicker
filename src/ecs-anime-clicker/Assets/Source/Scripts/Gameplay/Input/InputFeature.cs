@@ -1,9 +1,11 @@
 ﻿using Source.Scripts.Gameplay.Input.Systems;
 using Source.Scripts.Infrastructure.Systems;
+using UnityEngine.Scripting;
 
 namespace Source.Scripts.Gameplay.Input
 {
-  public class InputFeature : Feature
+  [Preserve]
+  public sealed class InputFeature : Feature
   {
     public InputFeature(ISystemFactory systems)
     {

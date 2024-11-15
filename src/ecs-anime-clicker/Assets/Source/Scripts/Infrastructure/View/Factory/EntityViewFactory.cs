@@ -22,8 +22,15 @@ namespace Source.Scripts.Infrastructure.View.Factory
         .SetEntity(entity);
 
     public async UniTask<EntityBehaviour> CreateViewForEntity(GameEntity entity) =>
-      InstantiateAndInject(await _assetProvider
-          .LoadAsync<EntityBehaviour>(entity.ViewAssetReference))
+      InstantiateAndInject((await _assetProvider
+          .LoadAsync<GameObject>(entity.ViewAssetReference))
+          .GetComponent<EntityBehaviour>())
+        .SetEntity(entity);
+    
+    public async UniTask<EntityBehaviour> CreateViewForEntityFromAssetName(GameEntity entity) =>
+      InstantiateAndInject((await _assetProvider
+          .LoadAsync<GameObject>(entity.ViewAssetName))
+          .GetComponent<EntityBehaviour>())
         .SetEntity(entity);
 
     private EntityBehaviour InstantiateAndInject(EntityBehaviour prefab)

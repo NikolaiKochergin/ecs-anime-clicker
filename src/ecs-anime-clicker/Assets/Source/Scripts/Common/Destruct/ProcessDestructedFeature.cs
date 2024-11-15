@@ -1,9 +1,11 @@
 ﻿using Source.Scripts.Common.Destruct.Systems;
 using Source.Scripts.Infrastructure.Systems;
+using UnityEngine.Scripting;
 
 namespace Source.Scripts.Common.Destruct
 {
-  public class ProcessDestructedFeature : Feature
+  [Preserve]
+  public sealed class ProcessDestructedFeature : Feature
   {
     public ProcessDestructedFeature(ISystemFactory systems)
     {

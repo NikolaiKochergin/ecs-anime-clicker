@@ -60,7 +60,7 @@ namespace Source.Scripts.Infrastructure.AssetManagement
       }
     }
 
-    private async UniTask UpdateCatalogsAsync()
+    private static async UniTask UpdateCatalogsAsync()
     {
       List<string> catalogsToUpdate = await Addressables.CheckForCatalogUpdates().ToUniTask();
       if (catalogsToUpdate.IsNullOrEmpty())

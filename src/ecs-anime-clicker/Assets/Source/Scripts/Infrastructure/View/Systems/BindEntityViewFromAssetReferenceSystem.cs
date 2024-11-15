@@ -17,13 +17,20 @@ namespace Source.Scripts.Infrastructure.View.Systems
       _entityViewFactory = entityViewFactory;
       _entities = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.ViewAssetReference)
-        .NoneOf(GameMatcher.View));
+        // .NoneOf(GameMatcher.View)
+      );
     }
 
     public void Execute()
     {
       foreach (GameEntity entity in _entities.GetEntities(_buffer))
-        _entityViewFactory.CreateViewForEntity(entity);
+      {
+        _entityViewFactory
+          .CreateViewForEntity(entity);
+        
+        entity
+          .RemoveViewAssetReference();
+      }
     }
   }
 }
