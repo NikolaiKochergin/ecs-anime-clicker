@@ -16,9 +16,7 @@ namespace Source.Scripts.Infrastructure.View.Systems
     {
       _entityViewFactory = entityViewFactory;
       _entities = game.GetGroup(GameMatcher
-        .AllOf(GameMatcher.ViewAssetReference)
-        // .NoneOf(GameMatcher.View)
-      );
+        .AllOf(GameMatcher.ViewAssetReference));
     }
 
     public void Execute()
