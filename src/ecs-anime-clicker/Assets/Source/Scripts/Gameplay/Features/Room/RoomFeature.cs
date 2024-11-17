@@ -9,6 +9,8 @@ namespace Source.Scripts.Gameplay.Features.Room
   {
     public RoomFeature(ISystemFactory systems)
     {
+      Add(systems.Create<SwapRoomsWhenNewRoomViewSpawnedSystem>());
+      
       Add(systems.Create<ReleaseDestructedRoomAssetReferenceSystem>());
     }
   }

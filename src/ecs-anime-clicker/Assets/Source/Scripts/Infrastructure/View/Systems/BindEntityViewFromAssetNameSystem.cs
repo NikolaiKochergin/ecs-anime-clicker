@@ -17,13 +17,18 @@ namespace Source.Scripts.Infrastructure.View.Systems
       _entityViewFactory = entityViewFactory;
       _entities = game.GetGroup(GameMatcher
         .AllOf(GameMatcher.ViewAssetName)
-        .NoneOf(GameMatcher.View));
+        .NoneOf(
+          GameMatcher.ViewSpawning,
+          GameMatcher.View));
     }
 
     public void Execute()
     {
       foreach (GameEntity entity in _entities.GetEntities(_buffer))
+      {
+        entity.isViewSpawning = true;
         _entityViewFactory.CreateViewForEntityFromAssetName(entity);
+      }
     }
   }
 }

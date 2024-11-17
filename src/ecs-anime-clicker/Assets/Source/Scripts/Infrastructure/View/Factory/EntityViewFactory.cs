@@ -33,7 +33,8 @@ namespace Source.Scripts.Infrastructure.View.Factory
       InstantiateAndInject((await _assetProvider
           .LoadAsync<GameObject>(entity.ViewAssetName))
           .GetComponent<EntityBehaviour>())
-        .SetEntity(entity);
+        .SetEntity(entity)
+        .With(x => x.Entity.isViewSpawning = false);
 
     private EntityBehaviour InstantiateAndInject(EntityBehaviour prefab)
     {

@@ -9,6 +9,7 @@ namespace Source.Scripts.Gameplay.Features.Room.Service
   {
     private readonly IRoomFactory _factory;
     private GameEntity _currentRoom;
+    private GameEntity _previousRoom;
     private List<string> _openedRooms;
 
     public RoomService(IRoomFactory factory) =>
@@ -23,22 +24,28 @@ namespace Source.Scripts.Gameplay.Features.Room.Service
     public void UpdateProgress(ProgressData data) =>
       data.CurrentRoom = _currentRoom.NameId;
 
-    public void SetNewRoom(string nameId)
-    {
-      _currentRoom.isDestructed = true;
-      
-      _currentRoom = _factory.CreateRoom(nameId);
-    }
-
     public void SetNextRoom()
     {
       int index = _openedRooms.IndexOf(_currentRoom.NameId) + 1;
       
       if(index >= _openedRooms.Count)
         index = 0;
+      
+      SetNewRoom(_openedRooms[index]);
+    }
 
-      _currentRoom.isDestructed = true;
-      _currentRoom = _factory.CreateRoom(_openedRooms[index]);
+    public void SetNewRoom(string nameId)
+    {
+      _previousRoom = _currentRoom;
+      _currentRoom = _factory.CreateRoom(nameId);
+    }
+
+    public void SwapRooms()
+    {
+      if(_previousRoom != null)
+        _previousRoom.isDestructed = true;
+      
+      _previousRoom = null;
     }
   }
 }

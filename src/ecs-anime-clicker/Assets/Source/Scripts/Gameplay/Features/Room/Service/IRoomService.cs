@@ -4,5 +4,6 @@ namespace Source.Scripts.Gameplay.Features.Room.Service
   {
     void SetNewRoom(string nameId);
     void SetNextRoom();
+    void SwapRooms();
   }
 }
