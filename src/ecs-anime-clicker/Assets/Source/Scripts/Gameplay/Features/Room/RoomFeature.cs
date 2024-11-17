@@ -1,4 +1,5 @@
-﻿using Source.Scripts.Infrastructure.Systems;
+﻿using Source.Scripts.Gameplay.Features.Room.Systems;
+using Source.Scripts.Infrastructure.Systems;
 using UnityEngine.Scripting;
 
 namespace Source.Scripts.Gameplay.Features.Room
@@ -8,6 +9,7 @@ namespace Source.Scripts.Gameplay.Features.Room
   {
     public RoomFeature(ISystemFactory systems)
     {
+      Add(systems.Create<ReleaseDestructedRoomAssetReferenceSystem>());
     }
   }
 }

@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using Reflex.Core;
 using Reflex.Injectors;
+using Source.Scripts.Common.Extensions;
 using Source.Scripts.Infrastructure.AssetManagement;
 using UnityEngine;
 
@@ -25,7 +26,8 @@ namespace Source.Scripts.Infrastructure.View.Factory
       InstantiateAndInject((await _assetProvider
           .LoadAsync<GameObject>(entity.ViewAssetReference))
           .GetComponent<EntityBehaviour>())
-        .SetEntity(entity);
+        .SetEntity(entity)
+        .With(x => x.Entity.isViewSpawning = false);
     
     public async UniTask<EntityBehaviour> CreateViewForEntityFromAssetName(GameEntity entity) =>
       InstantiateAndInject((await _assetProvider

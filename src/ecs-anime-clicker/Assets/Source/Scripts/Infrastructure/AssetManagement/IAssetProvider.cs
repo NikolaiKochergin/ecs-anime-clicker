@@ -7,5 +7,7 @@ namespace Source.Scripts.Infrastructure.AssetManagement
   {
     UniTask<TObject> LoadAsync<TObject>(AssetReference assetReference) where TObject : class;
     UniTask<TObject> LoadAsync<TObject>(string address) where TObject : class;
+    void Release(AssetReference assetReference);
+    void Release(string address);
   }
 }

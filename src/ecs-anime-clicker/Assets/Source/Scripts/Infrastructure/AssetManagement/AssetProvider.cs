@@ -34,6 +34,24 @@ namespace Source.Scripts.Infrastructure.AssetManagement
         cacheKey: address);
     }
 
+    public void Release(AssetReference assetReference)
+    {
+      foreach (AsyncOperationHandle handle in _handles[assetReference.AssetGUID])
+        handle.Release();
+      
+      _completedCache.Remove(assetReference.AssetGUID);
+      _handles.Remove(assetReference.AssetGUID);
+    }
+    
+    public void Release(string address)
+    {
+      foreach (AsyncOperationHandle handle in _handles[address])
+        handle.Release();
+      
+      _completedCache.Remove(address);
+      _handles.Remove(address);
+    }
+
     public void Cleanup()
     {
       foreach (List<AsyncOperationHandle> resourceHandles in _handles.Values)
