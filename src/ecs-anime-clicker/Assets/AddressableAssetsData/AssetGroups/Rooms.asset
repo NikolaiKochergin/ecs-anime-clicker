@@ -17,14 +17,14 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 08b19bb0cf9fd464db4b29da811f4d65
   m_SerializeEntries:
-  - m_GUID: 4762fbeb369c7054eb77f02514b1f7b1
-    m_Address: Room-4
+  - m_GUID: 641c98cc422ce7040b24562969ba3ebc
+    m_Address: Room-1
     m_ReadOnly: 0
     m_SerializedLabels:
     - remote
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6cacf02b04686b849a08adb0c510fc3f
-    m_Address: Room-1
+  - m_GUID: 8268f20d04cde2044865d2507f46e5ff
+    m_Address: Room-2
     m_ReadOnly: 0
     m_SerializedLabels:
     - remote
@@ -35,14 +35,14 @@ MonoBehaviour:
     m_SerializedLabels:
     - remote
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8a4aea035ec9dd04db4e32ce395aa7ce
-    m_Address: Room-2
+  - m_GUID: b0a449d46132bdf4dab6d240ae7778ef
+    m_Address: Room-3
     m_ReadOnly: 0
     m_SerializedLabels:
     - remote
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cd4ede2c45fc1b647ad6ee05a8491149
-    m_Address: Room-3
+  - m_GUID: e6d71de8046a3b44bbc891115d0fc1ba
+    m_Address: Room-4
     m_ReadOnly: 0
     m_SerializedLabels:
     - remote

@@ -19,26 +19,28 @@ namespace Source.Scripts.Infrastructure.View.Factory
     }
     
     public EntityBehaviour CreateViewForEntityFromPrefab(GameEntity entity) =>
-      InstantiateAndInject(entity.ViewPrefab)
+      InstantiateAndInject(entity.ViewPrefab, entity.hasParent ? entity.Parent : null)
         .SetEntity(entity);
 
     public async UniTask<EntityBehaviour> CreateViewForEntity(GameEntity entity) =>
       InstantiateAndInject((await _assetProvider
           .LoadAsync<GameObject>(entity.ViewAssetReference))
-          .GetComponent<EntityBehaviour>())
+          .GetComponent<EntityBehaviour>(),
+          entity.hasParent ? entity.Parent : null)
         .SetEntity(entity)
         .With(x => x.Entity.isViewSpawning = false);
     
     public async UniTask<EntityBehaviour> CreateViewForEntityFromAssetName(GameEntity entity) =>
       InstantiateAndInject((await _assetProvider
           .LoadAsync<GameObject>(entity.ViewAssetName))
-          .GetComponent<EntityBehaviour>())
+          .GetComponent<EntityBehaviour>(),
+          entity.hasParent ? entity.Parent : null)
         .SetEntity(entity)
         .With(x => x.Entity.isViewSpawning = false);
 
-    private EntityBehaviour InstantiateAndInject(EntityBehaviour prefab)
+    private EntityBehaviour InstantiateAndInject(EntityBehaviour prefab, Transform parent = null)
     {
-      EntityBehaviour newEntity = Object.Instantiate(prefab);
+      EntityBehaviour newEntity = Object.Instantiate(prefab, parent);
       GameObjectInjector.InjectObject(newEntity.gameObject, _container);
       return newEntity;
     }

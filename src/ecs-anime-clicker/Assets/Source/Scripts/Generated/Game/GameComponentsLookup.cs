@@ -9,20 +9,22 @@
 public static class GameComponentsLookup {
 
     public const int Destructed = 0;
-    public const int SelfDestructTimer = 1;
-    public const int View = 2;
-    public const int ViewAssetName = 3;
-    public const int ViewAssetReference = 4;
-    public const int ViewPrefab = 5;
-    public const int ViewSpawning = 6;
-    public const int Id = 7;
-    public const int NameId = 8;
-    public const int Room = 9;
+    public const int Parent = 1;
+    public const int SelfDestructTimer = 2;
+    public const int View = 3;
+    public const int ViewAssetName = 4;
+    public const int ViewAssetReference = 5;
+    public const int ViewPrefab = 6;
+    public const int ViewSpawning = 7;
+    public const int Id = 8;
+    public const int NameId = 9;
+    public const int Room = 10;
 
-    public const int TotalComponents = 10;
+    public const int TotalComponents = 11;
 
     public static readonly string[] componentNames = {
         "Destructed",
+        "Parent",
         "SelfDestructTimer",
         "View",
         "ViewAssetName",
@@ -36,6 +38,7 @@ public static class GameComponentsLookup {
 
     public static readonly System.Type[] componentTypes = {
         typeof(Source.Scripts.Common.Destructed),
+        typeof(Source.Scripts.Common.Parent),
         typeof(Source.Scripts.Common.SelfDestructTimer),
         typeof(Source.Scripts.Common.View),
         typeof(Source.Scripts.Common.ViewAssetName),
