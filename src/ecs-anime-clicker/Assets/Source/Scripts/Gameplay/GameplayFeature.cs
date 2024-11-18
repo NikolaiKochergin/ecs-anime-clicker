@@ -1,4 +1,5 @@
 ﻿using Source.Scripts.Common.Destruct;
+using Source.Scripts.Gameplay.Features.Characters;
 using Source.Scripts.Gameplay.Features.Room;
 using Source.Scripts.Gameplay.Input;
 using Source.Scripts.Infrastructure.Systems;
@@ -16,6 +17,7 @@ namespace Source.Scripts.Gameplay
       Add(systems.Create<BindViewFeature>());
 
       Add(systems.Create<RoomFeature>());
+      Add(systems.Create<CharactersFeature>());
       
       Add(systems.Create<ProcessDestructedFeature>());
     }

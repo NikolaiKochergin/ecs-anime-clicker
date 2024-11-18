@@ -5,6 +5,8 @@ using Reflex.Core;
 using RSG;
 using Source.Scripts.Gameplay.Common.Random;
 using Source.Scripts.Gameplay.Common.Time;
+using Source.Scripts.Gameplay.Features.Characters.Factory;
+using Source.Scripts.Gameplay.Features.Characters.Service;
 using Source.Scripts.Gameplay.Features.Room.Factory;
 using Source.Scripts.Gameplay.Features.Room.Service;
 using Source.Scripts.Gameplay.Input.Service;
@@ -98,14 +100,16 @@ namespace Source.Scripts.Infrastructure.Installers
     {
     }
 
-    private static void BindGameplayServices(ContainerBuilder builder) =>
-      builder
-        .AddSingleton(typeof(RoomService), typeof(IRoomService), typeof(IGameProgressReader), typeof(IGameProgressWriter));
-
     private static void BindGameplayFactories(ContainerBuilder builder) =>
       builder
         .AddSingleton(typeof(EntityViewFactory), typeof(IEntityViewFactory))
-        .AddSingleton(typeof(RoomFactory), typeof(IRoomFactory));
+        .AddSingleton(typeof(RoomFactory), typeof(IRoomFactory))
+        .AddScoped(typeof(CharacterFactory),typeof(ICharacterFactory));
+
+    private static void BindGameplayServices(ContainerBuilder builder) =>
+      builder
+        .AddSingleton(typeof(RoomService), typeof(IRoomService), typeof(IGameProgressReader), typeof(IGameProgressWriter))
+        .AddSingleton(typeof(CharacterService), typeof(ICharacterService), typeof(IGameProgressReader), typeof(IGameProgressWriter));
 
     private static void BindProgressServices(ContainerBuilder builder) =>
       builder

@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 532016865}
   - component: {fileID: 532016868}
   m_Layer: 5
-  m_Name: Button_2
+  m_Name: Button_NextRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -405,7 +405,7 @@ GameObject:
   - component: {fileID: 580795685}
   - component: {fileID: 580795688}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button_Save
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -624,9 +624,9 @@ GameObject:
   - component: {fileID: 665381252}
   - component: {fileID: 665381251}
   - component: {fileID: 665381250}
-  - component: {fileID: 665381249}
+  - component: {fileID: 665381253}
   m_Layer: 5
-  m_Name: Button_1
+  m_Name: Button_NextCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -652,20 +652,6 @@ RectTransform:
   m_AnchoredPosition: {x: 141, y: 133}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &665381249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 665381247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f493902e61b04da2a6d4fdb721d71ab9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _button: {fileID: 665381250}
-  _roomName: Room-2
 --- !u!114 &665381250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -748,6 +734,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665381247}
   m_CullTransparentMesh: 1
+--- !u!114 &665381253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665381247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284fbc9b759a4b41a355571edfd2bbc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _button: {fileID: 665381250}
 --- !u!1 &674571070
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,7 +1268,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Room-2
+  m_text: Next Character
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1357,6 +1356,7 @@ GameObject:
   - component: {fileID: 1818707684}
   - component: {fileID: 1818707686}
   - component: {fileID: 1818707685}
+  - component: {fileID: 1818707687}
   m_Layer: 5
   m_Name: Characters Root
   m_TagString: Untagged
@@ -1423,6 +1423,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1818707687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818707683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0da1ca950354c5fa2bfcde3072562a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1912853681
 GameObject:
   m_ObjectHideFlags: 0

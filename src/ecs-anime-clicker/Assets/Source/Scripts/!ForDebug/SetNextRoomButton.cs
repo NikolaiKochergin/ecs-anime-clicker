@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Source.Scripts._ForDebug
 {
-  public class SetNextRoom : MonoBehaviour
+  public class SetNextRoomButton : MonoBehaviour
   {
     [SerializeField] private Button _button;
 

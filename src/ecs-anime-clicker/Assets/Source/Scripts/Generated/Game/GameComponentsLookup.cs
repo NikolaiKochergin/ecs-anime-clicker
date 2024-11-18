@@ -17,10 +17,12 @@ public static class GameComponentsLookup {
     public const int ViewPrefab = 6;
     public const int ViewSpawning = 7;
     public const int Id = 8;
-    public const int Room = 9;
-    public const int RoomNameId = 10;
+    public const int Character = 9;
+    public const int CharacterNameId = 10;
+    public const int Room = 11;
+    public const int RoomNameId = 12;
 
-    public const int TotalComponents = 11;
+    public const int TotalComponents = 13;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -32,6 +34,8 @@ public static class GameComponentsLookup {
         "ViewPrefab",
         "ViewSpawning",
         "Id",
+        "Character",
+        "CharacterNameId",
         "Room",
         "RoomNameId"
     };
@@ -46,6 +50,8 @@ public static class GameComponentsLookup {
         typeof(Source.Scripts.Common.ViewPrefab),
         typeof(Source.Scripts.Common.ViewSpawning),
         typeof(Source.Scripts.Gameplay.Common.Id),
+        typeof(Source.Scripts.Gameplay.Features.Characters.Character),
+        typeof(Source.Scripts.Gameplay.Features.Characters.CharacterNameId),
         typeof(Source.Scripts.Gameplay.Features.Room.Room),
         typeof(Source.Scripts.Gameplay.Features.Room.RoomNameId)
     };

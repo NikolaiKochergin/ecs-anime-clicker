@@ -3,7 +3,7 @@ using Entitas;
 using Source.Scripts.Gameplay.Features.Room.Service;
 using UnityEngine.Scripting;
 
-namespace Source.Scripts.Gameplay.Features.Room
+namespace Source.Scripts.Gameplay.Features.Room.Systems
 {
   [Preserve]
   public class SwapRoomsWhenNewRoomViewSpawnedSystem : ReactiveSystem<GameEntity>
