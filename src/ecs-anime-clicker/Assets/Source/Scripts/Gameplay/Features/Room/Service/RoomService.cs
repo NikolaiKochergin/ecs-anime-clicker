@@ -22,11 +22,11 @@ namespace Source.Scripts.Gameplay.Features.Room.Service
     }
 
     public void UpdateProgress(ProgressData data) =>
-      data.CurrentRoom = _currentRoom.NameId;
+      data.CurrentRoom = _currentRoom.RoomNameId;
 
     public void SetNextRoom()
     {
-      int index = _openedRooms.IndexOf(_currentRoom.NameId) + 1;
+      int index = _openedRooms.IndexOf(_currentRoom.RoomNameId) + 1;
       
       if(index >= _openedRooms.Count)
         index = 0;

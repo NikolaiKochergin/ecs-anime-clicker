@@ -24,7 +24,7 @@ namespace Source.Scripts.Gameplay.Features.Room.Factory
     public GameEntity CreateRoom(string nameId) =>
       CreateGameEntity.Empty()
         .AddId(_identifiers.Next())
-        .AddNameId(nameId)
+        .AddRoomNameId(nameId)
         .AddParent(_roomsRoot)
         .AddViewAssetReference(_staticData.ForRoom(nameId).RoomReference)
         .With(x => x.isRoom = true);

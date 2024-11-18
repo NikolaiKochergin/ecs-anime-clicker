@@ -17,8 +17,8 @@ public static class GameComponentsLookup {
     public const int ViewPrefab = 6;
     public const int ViewSpawning = 7;
     public const int Id = 8;
-    public const int NameId = 9;
-    public const int Room = 10;
+    public const int Room = 9;
+    public const int RoomNameId = 10;
 
     public const int TotalComponents = 11;
 
@@ -32,8 +32,8 @@ public static class GameComponentsLookup {
         "ViewPrefab",
         "ViewSpawning",
         "Id",
-        "NameId",
-        "Room"
+        "Room",
+        "RoomNameId"
     };
 
     public static readonly System.Type[] componentTypes = {
@@ -46,7 +46,7 @@ public static class GameComponentsLookup {
         typeof(Source.Scripts.Common.ViewPrefab),
         typeof(Source.Scripts.Common.ViewSpawning),
         typeof(Source.Scripts.Gameplay.Common.Id),
-        typeof(Source.Scripts.Gameplay.Features.Room.NameId),
-        typeof(Source.Scripts.Gameplay.Features.Room.Room)
+        typeof(Source.Scripts.Gameplay.Features.Room.Room),
+        typeof(Source.Scripts.Gameplay.Features.Room.RoomNameId)
     };
 }
