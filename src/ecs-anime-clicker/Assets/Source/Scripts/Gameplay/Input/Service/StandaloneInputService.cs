@@ -36,7 +36,6 @@ namespace Source.Scripts.Gameplay.Input.Service
     
     public float GetVerticalAxis() => UnityEngine.Input.GetAxis("Vertical");
     public float GetHorizontalAxis() => UnityEngine.Input.GetAxis("Horizontal");
-    
 
     public bool GetLeftMouseButton() => 
       UnityEngine.Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject();

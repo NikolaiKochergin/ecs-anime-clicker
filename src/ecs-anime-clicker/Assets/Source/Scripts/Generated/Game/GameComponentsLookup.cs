@@ -19,10 +19,18 @@ public static class GameComponentsLookup {
     public const int Id = 8;
     public const int Character = 9;
     public const int CharacterNameId = 10;
-    public const int Room = 11;
-    public const int RoomNameId = 12;
+    public const int AutoIncomeEmitter = 11;
+    public const int Income = 12;
+    public const int Period = 13;
+    public const int TimeSinceLastTick = 14;
+    public const int BaseStats = 15;
+    public const int StatModifiers = 16;
+    public const int Room = 17;
+    public const int RoomNameId = 18;
+    public const int Gold = 19;
+    public const int Wallet = 20;
 
-    public const int TotalComponents = 13;
+    public const int TotalComponents = 21;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -36,8 +44,16 @@ public static class GameComponentsLookup {
         "Id",
         "Character",
         "CharacterNameId",
+        "AutoIncomeEmitter",
+        "Income",
+        "Period",
+        "TimeSinceLastTick",
+        "BaseStats",
+        "StatModifiers",
         "Room",
-        "RoomNameId"
+        "RoomNameId",
+        "Gold",
+        "Wallet"
     };
 
     public static readonly System.Type[] componentTypes = {
@@ -52,7 +68,15 @@ public static class GameComponentsLookup {
         typeof(Source.Scripts.Gameplay.Common.Id),
         typeof(Source.Scripts.Gameplay.Features.Characters.Character),
         typeof(Source.Scripts.Gameplay.Features.Characters.CharacterNameId),
+        typeof(Source.Scripts.Gameplay.Features.Income.AutoIncomeEmitter),
+        typeof(Source.Scripts.Gameplay.Features.Income.Income),
+        typeof(Source.Scripts.Gameplay.Features.Income.Period),
+        typeof(Source.Scripts.Gameplay.Features.Income.TimeSinceLastTick),
+        typeof(Source.Scripts.Gameplay.Features.IncomeStats.BaseStats),
+        typeof(Source.Scripts.Gameplay.Features.IncomeStats.StatModifiers),
         typeof(Source.Scripts.Gameplay.Features.Room.Room),
-        typeof(Source.Scripts.Gameplay.Features.Room.RoomNameId)
+        typeof(Source.Scripts.Gameplay.Features.Room.RoomNameId),
+        typeof(Source.Scripts.Meta.Features.Wallet.Gold),
+        typeof(Source.Scripts.Meta.Features.Wallet.Wallet)
     };
 }

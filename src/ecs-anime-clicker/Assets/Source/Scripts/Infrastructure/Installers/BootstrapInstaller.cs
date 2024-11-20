@@ -7,6 +7,7 @@ using Source.Scripts.Gameplay.Common.Random;
 using Source.Scripts.Gameplay.Common.Time;
 using Source.Scripts.Gameplay.Features.Characters.Factory;
 using Source.Scripts.Gameplay.Features.Characters.Service;
+using Source.Scripts.Gameplay.Features.Income.Factory;
 using Source.Scripts.Gameplay.Features.Room.Factory;
 using Source.Scripts.Gameplay.Features.Room.Service;
 using Source.Scripts.Gameplay.Input.Service;
@@ -20,6 +21,7 @@ using Source.Scripts.Infrastructure.States.GameStates;
 using Source.Scripts.Infrastructure.States.StateMachine;
 using Source.Scripts.Infrastructure.Systems;
 using Source.Scripts.Infrastructure.View.Factory;
+using Source.Scripts.Meta.UI.WalletHolder.Service;
 using Source.Scripts.Progress.SaveLoad;
 using UnityEngine;
 
@@ -96,15 +98,15 @@ namespace Source.Scripts.Infrastructure.Installers
     {
     }
 
-    private static void BindUIServices(ContainerBuilder builder)
-    {
-    }
+    private static void BindUIServices(ContainerBuilder builder) =>
+      builder.AddSingleton(typeof(WalletUIService), typeof(IWalletUIService));
 
     private static void BindGameplayFactories(ContainerBuilder builder) =>
       builder
         .AddSingleton(typeof(EntityViewFactory), typeof(IEntityViewFactory))
         .AddSingleton(typeof(RoomFactory), typeof(IRoomFactory))
-        .AddScoped(typeof(CharacterFactory),typeof(ICharacterFactory));
+        .AddSingleton(typeof(CharacterFactory), typeof(ICharacterFactory))
+        .AddSingleton(typeof(IncomeFactory), typeof(IIncomeFactory));
 
     private static void BindGameplayServices(ContainerBuilder builder) =>
       builder

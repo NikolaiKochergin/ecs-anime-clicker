@@ -26,7 +26,7 @@ namespace Source.Scripts.Gameplay.Input.Systems
         else if(input.hasAxisInput)
           input.RemoveAxisInput();
 
-        input.isMouseButtonDownInput = _inputService.GetLeftMouseButton();
+        input.isMouseButtonDownInput = _inputService.GetLeftMouseButtonDown();
       }
     }
   }

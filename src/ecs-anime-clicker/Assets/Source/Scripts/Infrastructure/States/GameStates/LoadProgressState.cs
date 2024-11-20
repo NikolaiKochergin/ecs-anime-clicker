@@ -38,7 +38,7 @@ namespace Source.Scripts.Infrastructure.States.GameStates
     {
       _saveLoad.CreateProgress();
 
-      CreateMetaEntity.Empty()
+      CreateGameEntity.Empty()
         .With(x => x.isWallet = true)
         .AddGold(10);
     }

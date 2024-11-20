@@ -6,15 +6,15 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed partial class MetaMatcher {
+public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<MetaEntity> _matcherGold;
+    static Entitas.IMatcher<GameEntity> _matcherGold;
 
-    public static Entitas.IMatcher<MetaEntity> Gold {
+    public static Entitas.IMatcher<GameEntity> Gold {
         get {
             if (_matcherGold == null) {
-                var matcher = (Entitas.Matcher<MetaEntity>)Entitas.Matcher<MetaEntity>.AllOf(MetaComponentsLookup.Gold);
-                matcher.componentNames = MetaComponentsLookup.componentNames;
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.Gold);
+                matcher.componentNames = GameComponentsLookup.componentNames;
                 _matcherGold = matcher;
             }
 
@@ -31,30 +31,30 @@ public sealed partial class MetaMatcher {
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial class MetaEntity {
+public partial class GameEntity {
 
-    public Source.Scripts.Meta.Features.Wallet.Gold gold { get { return (Source.Scripts.Meta.Features.Wallet.Gold)GetComponent(MetaComponentsLookup.Gold); } }
-    public float Gold { get { return gold.Value; } }
-    public bool hasGold { get { return HasComponent(MetaComponentsLookup.Gold); } }
+    public Source.Scripts.Meta.Features.Wallet.Gold gold { get { return (Source.Scripts.Meta.Features.Wallet.Gold)GetComponent(GameComponentsLookup.Gold); } }
+    public int Gold { get { return gold.Value; } }
+    public bool hasGold { get { return HasComponent(GameComponentsLookup.Gold); } }
 
-    public MetaEntity AddGold(float newValue) {
-        var index = MetaComponentsLookup.Gold;
+    public GameEntity AddGold(int newValue) {
+        var index = GameComponentsLookup.Gold;
         var component = (Source.Scripts.Meta.Features.Wallet.Gold)CreateComponent(index, typeof(Source.Scripts.Meta.Features.Wallet.Gold));
         component.Value = newValue;
         AddComponent(index, component);
         return this;
     }
 
-    public MetaEntity ReplaceGold(float newValue) {
-        var index = MetaComponentsLookup.Gold;
+    public GameEntity ReplaceGold(int newValue) {
+        var index = GameComponentsLookup.Gold;
         var component = (Source.Scripts.Meta.Features.Wallet.Gold)CreateComponent(index, typeof(Source.Scripts.Meta.Features.Wallet.Gold));
         component.Value = newValue;
         ReplaceComponent(index, component);
         return this;
     }
 
-    public MetaEntity RemoveGold() {
-        RemoveComponent(MetaComponentsLookup.Gold);
+    public GameEntity RemoveGold() {
+        RemoveComponent(GameComponentsLookup.Gold);
         return this;
     }
 }

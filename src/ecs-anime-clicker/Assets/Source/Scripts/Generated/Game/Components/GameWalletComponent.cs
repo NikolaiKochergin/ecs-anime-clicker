@@ -6,15 +6,15 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public sealed partial class MetaMatcher {
+public sealed partial class GameMatcher {
 
-    static Entitas.IMatcher<MetaEntity> _matcherWallet;
+    static Entitas.IMatcher<GameEntity> _matcherWallet;
 
-    public static Entitas.IMatcher<MetaEntity> Wallet {
+    public static Entitas.IMatcher<GameEntity> Wallet {
         get {
             if (_matcherWallet == null) {
-                var matcher = (Entitas.Matcher<MetaEntity>)Entitas.Matcher<MetaEntity>.AllOf(MetaComponentsLookup.Wallet);
-                matcher.componentNames = MetaComponentsLookup.componentNames;
+                var matcher = (Entitas.Matcher<GameEntity>)Entitas.Matcher<GameEntity>.AllOf(GameComponentsLookup.Wallet);
+                matcher.componentNames = GameComponentsLookup.componentNames;
                 _matcherWallet = matcher;
             }
 
@@ -31,15 +31,15 @@ public sealed partial class MetaMatcher {
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial class MetaEntity {
+public partial class GameEntity {
 
     static readonly Source.Scripts.Meta.Features.Wallet.Wallet walletComponent = new Source.Scripts.Meta.Features.Wallet.Wallet();
 
     public bool isWallet {
-        get { return HasComponent(MetaComponentsLookup.Wallet); }
+        get { return HasComponent(GameComponentsLookup.Wallet); }
         set {
             if (value != isWallet) {
-                var index = MetaComponentsLookup.Wallet;
+                var index = GameComponentsLookup.Wallet;
                 if (value) {
                     var componentPool = GetComponentPool(index);
                     var component = componentPool.Count > 0

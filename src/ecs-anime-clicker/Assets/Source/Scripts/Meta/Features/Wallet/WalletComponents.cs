@@ -2,6 +2,6 @@
 
 namespace Source.Scripts.Meta.Features.Wallet
 {
-  [Meta] public class Wallet : ISavedComponent { }
-  [Meta] public class Gold : ISavedComponent { public float Value; }
+  [Game] public class Wallet : ISavedComponent { }
+  [Game] public class Gold : ISavedComponent { public int Value; }
 }

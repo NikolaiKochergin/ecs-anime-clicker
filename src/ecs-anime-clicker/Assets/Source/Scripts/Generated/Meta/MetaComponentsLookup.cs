@@ -9,20 +9,14 @@
 public static class MetaComponentsLookup {
 
     public const int Destructed = 0;
-    public const int Gold = 1;
-    public const int Wallet = 2;
 
-    public const int TotalComponents = 3;
+    public const int TotalComponents = 1;
 
     public static readonly string[] componentNames = {
-        "Destructed",
-        "Gold",
-        "Wallet"
+        "Destructed"
     };
 
     public static readonly System.Type[] componentTypes = {
-        typeof(Source.Scripts.Common.Destructed),
-        typeof(Source.Scripts.Meta.Features.Wallet.Gold),
-        typeof(Source.Scripts.Meta.Features.Wallet.Wallet)
+        typeof(Source.Scripts.Common.Destructed)
     };
 }
