@@ -109,7 +109,7 @@ namespace Source.Scripts.Infrastructure.AssetManagement
         .ToUniTask();
     }
 
-    private async UniTask<IList<IResourceLocation>> RefreshResourceLocations(IEnumerable<IResourceLocator> locators)
+    private static async UniTask<IList<IResourceLocation>> RefreshResourceLocations(IEnumerable<IResourceLocator> locators)
     {
       IEnumerable<object> keysToCheck = locators.SelectMany(x => x.Keys);
       
