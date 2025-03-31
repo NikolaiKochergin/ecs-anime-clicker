@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Girls
   m_EditorClassIdentifier: 
   m_GroupName: Girls
-  m_Data:
-    m_SerializedData: []
   m_GUID: 24e4afc9dd5d8f24584200a5dfb92ed5
   m_SerializeEntries:
   - m_GUID: 2c5aee25c8377d24dbdb5f258d65ea11

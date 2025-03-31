@@ -25,13 +25,22 @@ namespace Source.Editor.AddressablesTools.Build
       return result;
     }
 
-    private void MarkRemoteAssetsInGroups()
+    private static void MarkRemoteAssetsInGroups()
     {
       AddRemoteLabelIfNeeded();
       foreach (AddressableAssetGroup group in Settings.groups)
       {
-        foreach (AddressableAssetEntry entry in group.entries) 
-          entry.SetLabel(LabeledAssetDownloadService.RemoteLabel, enable: group.IsRemote());
+        foreach (AddressableAssetEntry entry in group.entries)
+        {
+          entry.SetLabel(LabeledAssetDownloadService.RemoteLabel, enable: entry.MainAsset is GameObject);
+          
+          // if (entry.MainAsset is GameObject go)
+          // {
+          //   Settings.AddLabel(go.name);
+          //   entry.SetLabel(go.name, true);
+          //   Debug.Log(">>>>>>>" + go.name);
+          // }
+        }
         
         SetTimeoutForRemoteGroup(group);
         

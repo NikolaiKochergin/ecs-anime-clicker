@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Rooms
   m_EditorClassIdentifier: 
   m_GroupName: Rooms
-  m_Data:
-    m_SerializedData: []
   m_GUID: 08b19bb0cf9fd464db4b29da811f4d65
   m_SerializeEntries:
   - m_GUID: 641c98cc422ce7040b24562969ba3ebc
@@ -32,8 +30,7 @@ MonoBehaviour:
   - m_GUID: 87e1c3120e8351240a66ecbe7e14a215
     m_Address: Room
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - remote
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b0a449d46132bdf4dab6d240ae7778ef
     m_Address: Room-3

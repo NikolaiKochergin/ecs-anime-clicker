@@ -8,6 +8,9 @@ using Source.Scripts.Infrastructure.Services.StaticData;
 using Source.Scripts.Infrastructure.States.StateInfrastructure;
 using Source.Scripts.Infrastructure.States.StateMachine;
 using UnityEngine;
+#if YANDEX_GAMES && !UNITY_EDITOR
+using Agava.YandexGames;
+#endif
 
 namespace Source.Scripts.Infrastructure.States.GameStates
 {
@@ -23,6 +26,10 @@ namespace Source.Scripts.Infrastructure.States.GameStates
 
     private async UniTaskVoid OnEnter()
     {
+#if YANDEX_GAMES && !UNITY_EDITOR
+      await YandexSDKInitialize();
+#endif
+      
       await Initialize();
 
       await LoadStaticData();
@@ -31,6 +38,14 @@ namespace Source.Scripts.Infrastructure.States.GameStates
       
       ToLoadProgress();
     }
+    
+#if YANDEX_GAMES && !UNITY_EDITOR
+    private static async UniTask YandexSDKInitialize()
+    {
+      await UniTask.WaitUntil(() => YandexGamesSdk.IsRunningOnYandex);
+      await YandexGamesSdk.Initialize().ToUniTask();
+    }
+#endif
 
     private void ToLoadProgress() =>
       _container
@@ -67,8 +82,8 @@ namespace Source.Scripts.Infrastructure.States.GameStates
       
       reporter.ProgressUpdated += DisplayDownloadProgress;
       
-      // if (downloadSize > 0)
-      //   await downloadService.UpdateContentAsync();
+      if (downloadSize > 0)
+        await downloadService.UpdateContentAsync();
 
       return;
 

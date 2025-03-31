@@ -11,7 +11,18 @@ namespace Source.Editor.AddressablesTools.Build
       BundledAssetGroupSchema schema = group.GetSchema<BundledAssetGroupSchema>();
       if (schema == null)
         return false;
+      
+      return schema.BuildPath.GetValue(AddressableAssetSettingsDefaultObject.Settings).Contains("http") ||
+             schema.LoadPath.GetValue(AddressableAssetSettingsDefaultObject.Settings).Contains("http");
+    }
 
+    public static bool IsRoom(this AddressableAssetGroup group)
+    {
+      BundledAssetGroupSchema schema = group.GetSchema<BundledAssetGroupSchema>();
+      if (schema == null)
+        return false;
+      
+      
       return schema.BuildPath.GetValue(AddressableAssetSettingsDefaultObject.Settings).Contains("http") ||
              schema.LoadPath.GetValue(AddressableAssetSettingsDefaultObject.Settings).Contains("http");
     }
