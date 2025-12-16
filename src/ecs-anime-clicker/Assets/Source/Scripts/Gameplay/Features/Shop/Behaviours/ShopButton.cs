@@ -1,4 +1,5 @@
 ﻿using Reflex.Attributes;
+using Source.Scripts.Common.Entity;
 using Source.Scripts.Gameplay.Features.Shop.Service;
 using TMPro;
 using UnityEngine;
@@ -25,10 +26,11 @@ namespace Source.Scripts.Gameplay.Features.Shop.Behaviours
     }
 
     private void OnDestroy() =>
-      
       _buyButton.onClick.RemoveListener(OnBuyButtonClicked);
 
     private void OnBuyButtonClicked() =>
-      _shops.TryBuy(_purchaseId);
+      CreateGameEntity.Empty()
+        .AddShopItemId(_purchaseId)
+        .isBuyRequest = true;
   }
 }

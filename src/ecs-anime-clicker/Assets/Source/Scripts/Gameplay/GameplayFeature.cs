@@ -3,6 +3,7 @@ using Source.Scripts.Gameplay.Features.Characters;
 using Source.Scripts.Gameplay.Features.Income;
 using Source.Scripts.Gameplay.Features.IncomeStats;
 using Source.Scripts.Gameplay.Features.Room;
+using Source.Scripts.Gameplay.Features.Shop;
 using Source.Scripts.Gameplay.Input;
 using Source.Scripts.Infrastructure.Systems;
 using Source.Scripts.Infrastructure.View;
@@ -25,7 +26,7 @@ namespace Source.Scripts.Gameplay
       Add(systems.Create<RoomFeature>());
       Add(systems.Create<CharactersFeature>());
 
-      
+      Add(systems.Create<ShopFeature>());
       Add(systems.Create<UpdateUIFeature>());
       
       Add(systems.Create<ProcessDestructedFeature>());

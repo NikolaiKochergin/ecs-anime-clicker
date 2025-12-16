@@ -27,10 +27,13 @@ public static class GameComponentsLookup {
     public const int StatModifiers = 16;
     public const int Room = 17;
     public const int RoomNameId = 18;
-    public const int Gold = 19;
-    public const int Wallet = 20;
+    public const int BuyRequest = 19;
+    public const int Purchased = 20;
+    public const int ShopItemId = 21;
+    public const int Gold = 22;
+    public const int Wallet = 23;
 
-    public const int TotalComponents = 21;
+    public const int TotalComponents = 24;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -52,6 +55,9 @@ public static class GameComponentsLookup {
         "StatModifiers",
         "Room",
         "RoomNameId",
+        "BuyRequest",
+        "Purchased",
+        "ShopItemId",
         "Gold",
         "Wallet"
     };
@@ -76,6 +82,9 @@ public static class GameComponentsLookup {
         typeof(Source.Scripts.Gameplay.Features.IncomeStats.StatModifiers),
         typeof(Source.Scripts.Gameplay.Features.Room.Room),
         typeof(Source.Scripts.Gameplay.Features.Room.RoomNameId),
+        typeof(Source.Scripts.Gameplay.Features.Shop.ShopComponents.BuyRequestComponent),
+        typeof(Source.Scripts.Gameplay.Features.Shop.ShopComponents.PurchasedComponent),
+        typeof(Source.Scripts.Gameplay.Features.Shop.ShopComponents.ShopItemIdComponent),
         typeof(Source.Scripts.Meta.Features.Wallet.Gold),
         typeof(Source.Scripts.Meta.Features.Wallet.Wallet)
     };
