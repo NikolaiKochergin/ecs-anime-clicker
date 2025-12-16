@@ -177,7 +177,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 300
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 77aa30ca08fdd4cdd8ec6436a3af94ac, type: 2}
   m_sharedMaterial: {fileID: -4509379148335439522, guid: 77aa30ca08fdd4cdd8ec6436a3af94ac, type: 2}
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 53140959}
   - component: {fileID: 53140958}
   - component: {fileID: 53140957}
-  - component: {fileID: 53140956}
+  - component: {fileID: 53140960}
   m_Layer: 5
   m_Name: Icon_Reward_Blue
   m_TagString: Untagged
@@ -297,19 +297,6 @@ RectTransform:
   m_AnchoredPosition: {x: -161.5, y: -29}
   m_SizeDelta: {x: 158.43, y: 79.07}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &53140956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 53140954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b10d91de6d04f2585654125147cac61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Source.Scripts._ForDebug.SetNextRoomButton
-  _button: {fileID: 53140957}
 --- !u!114 &53140957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +379,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 53140954}
   m_CullTransparentMesh: 0
+--- !u!114 &53140960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53140954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540f270ba18e4737a09188fd9aea3af2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Source.Scripts.Gameplay.Features.Purchases.Behaviours.BuyButton
+  _buyButton: {fileID: 53140957}
+  _priceText: {fileID: 20733133}
+  _purchaseId: buy-room
+--- !u!1 &195212543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 195212544}
+  - component: {fileID: 195212545}
+  m_Layer: 5
+  m_Name: HUD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &195212544
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195212543}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6885248446696782377}
+  - {fileID: 1409821977761077406}
+  - {fileID: 580795684}
+  m_Father: {fileID: 969382847}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &195212545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195212543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b13ffb219a4fc3a1cbb34754234393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Source.Scripts.UI.HUD
 --- !u!1 &281930304
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +503,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 200
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 77aa30ca08fdd4cdd8ec6436a3af94ac, type: 2}
   m_sharedMaterial: {fileID: -4509379148335439522, guid: 77aa30ca08fdd4cdd8ec6436a3af94ac, type: 2}
@@ -542,6 +595,7 @@ GameObject:
   - component: {fileID: 404911605}
   - component: {fileID: 404911604}
   - component: {fileID: 404911603}
+  - component: {fileID: 404911606}
   m_Layer: 5
   m_Name: Icon_Reward_Blue
   m_TagString: Untagged
@@ -651,6 +705,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 404911601}
   m_CullTransparentMesh: 0
+--- !u!114 &404911606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404911601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540f270ba18e4737a09188fd9aea3af2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Source.Scripts.Gameplay.Features.Purchases.Behaviours.BuyButton
+  _buyButton: {fileID: 404911603}
+  _priceText: {fileID: 1320607986}
+  _purchaseId: buy-click
 --- !u!1 &427030917
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,7 +832,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 687514445}
-  m_Father: {fileID: 969382847}
+  m_Father: {fileID: 195212544}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -1559,9 +1628,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6885248446696782377}
-  - {fileID: 1409821977761077406}
-  - {fileID: 580795684}
+  - {fileID: 195212544}
   m_Father: {fileID: 631543105}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2037,7 +2104,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 77aa30ca08fdd4cdd8ec6436a3af94ac, type: 2}
   m_sharedMaterial: {fileID: -4509379148335439522, guid: 77aa30ca08fdd4cdd8ec6436a3af94ac, type: 2}
@@ -2129,7 +2196,7 @@ GameObject:
   - component: {fileID: 1452723594}
   - component: {fileID: 1452723593}
   - component: {fileID: 1452723592}
-  - component: {fileID: 1452723591}
+  - component: {fileID: 1452723595}
   m_Layer: 5
   m_Name: Icon_Reward_Blue
   m_TagString: Untagged
@@ -2157,19 +2224,6 @@ RectTransform:
   m_AnchoredPosition: {x: -161.5, y: -29}
   m_SizeDelta: {x: 158.43, y: 79.07}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1452723591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452723589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 284fbc9b759a4b41a355571edfd2bbc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Source.Scripts._ForDebug.SetNextCharacterButton
-  _button: {fileID: 1452723592}
 --- !u!114 &1452723592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2252,6 +2306,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1452723589}
   m_CullTransparentMesh: 0
+--- !u!114 &1452723595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452723589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540f270ba18e4737a09188fd9aea3af2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Source.Scripts.Gameplay.Features.Purchases.Behaviours.BuyButton
+  _buyButton: {fileID: 1452723592}
+  _priceText: {fileID: 281930306}
+  _purchaseId: buy-character
 --- !u!1 &1529157181
 GameObject:
   m_ObjectHideFlags: 0
@@ -3084,6 +3153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1912853683}
   - component: {fileID: 1912853682}
+  - component: {fileID: 1912853684}
   m_Layer: 0
   m_Name: SceneScope
   m_TagString: Untagged
@@ -3118,6 +3188,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1912853684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912853681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14cf9887e27b4b72871d485d53fb8bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Source.Scripts.UI.HUDInstaller
+  _hud: {fileID: 195212545}
 --- !u!1 &1948839308
 GameObject:
   m_ObjectHideFlags: 0
@@ -3336,7 +3419,7 @@ RectTransform:
   - {fileID: 1724847530}
   - {fileID: 427030918}
   - {fileID: 1529157182}
-  m_Father: {fileID: 969382847}
+  m_Father: {fileID: 195212544}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -9064,7 +9147,7 @@ RectTransform:
   m_Children:
   - {fileID: 7190544423886689224}
   - {fileID: 3601498310568321395}
-  m_Father: {fileID: 969382847}
+  m_Father: {fileID: 195212544}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}

@@ -1,6 +1,6 @@
 using Source.Scripts.Gameplay.Features.Characters.Configs;
-using Source.Scripts.Gameplay.Features.Purchases.Configs;
 using Source.Scripts.Gameplay.Features.Room.Configs;
+using Source.Scripts.Gameplay.Features.Shop.Configs;
 
 namespace Source.Scripts.Infrastructure.Services.StaticData
 {

@@ -1,8 +1,8 @@
 ﻿using Source.Scripts.Gameplay;
-using Source.Scripts.Gameplay.Features.Room.Factory;
 using Source.Scripts.Infrastructure.States.StateInfrastructure;
 using Source.Scripts.Infrastructure.Systems;
 using Source.Scripts.Progress.SaveLoad;
+using Source.Scripts.UI;
 
 namespace Source.Scripts.Infrastructure.States.GameStates
 {
@@ -11,14 +11,17 @@ namespace Source.Scripts.Infrastructure.States.GameStates
     private readonly ISystemFactory _systems;
     private readonly ISaveLoadService _saveLoad;
     private readonly GameContext _game;
+    private readonly HUD _hud;
 
     private GameplayFeature _gameplayFeature;
 
     public GameLoopState(
       ISystemFactory systems,
       ISaveLoadService saveLoad,
-      GameContext game)
+      GameContext game,
+      HUDProvider hudProvider)
     {
+      _hud = hudProvider.HUD;
       _systems = systems;
       _saveLoad = saveLoad;
       _game = game;
@@ -30,6 +33,7 @@ namespace Source.Scripts.Infrastructure.States.GameStates
       _gameplayFeature.Initialize();
       
       _saveLoad.LoadGameProgress();
+      _hud.Show();
     }
     
     protected override void OnUpdate()
@@ -45,6 +49,7 @@ namespace Source.Scripts.Infrastructure.States.GameStates
     
       DestructEntities();
       
+      _hud.Hide();
       _gameplayFeature.Cleanup();
       _gameplayFeature.TearDown();
       _gameplayFeature = null;

@@ -3,8 +3,8 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using Source.Scripts.Configs;
 using Source.Scripts.Gameplay.Features.Characters.Configs;
-using Source.Scripts.Gameplay.Features.Purchases.Configs;
 using Source.Scripts.Gameplay.Features.Room.Configs;
+using Source.Scripts.Gameplay.Features.Shop.Configs;
 using UnityEngine.AddressableAssets;
 
 namespace Source.Scripts.Infrastructure.Services.StaticData

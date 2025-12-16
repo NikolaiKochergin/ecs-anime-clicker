@@ -10,6 +10,7 @@ using Source.Scripts.Gameplay.Features.Characters.Service;
 using Source.Scripts.Gameplay.Features.Income.Factory;
 using Source.Scripts.Gameplay.Features.Room.Factory;
 using Source.Scripts.Gameplay.Features.Room.Service;
+using Source.Scripts.Gameplay.Features.Shop.Service;
 using Source.Scripts.Gameplay.Input.Service;
 using Source.Scripts.Infrastructure.AssetManagement;
 using Source.Scripts.Infrastructure.Identifiers;
@@ -23,6 +24,7 @@ using Source.Scripts.Infrastructure.Systems;
 using Source.Scripts.Infrastructure.View.Factory;
 using Source.Scripts.Meta.UI.WalletHolder.Service;
 using Source.Scripts.Progress.SaveLoad;
+using Source.Scripts.UI;
 using UnityEngine;
 
 namespace Source.Scripts.Infrastructure.Installers
@@ -99,7 +101,9 @@ namespace Source.Scripts.Infrastructure.Installers
     }
 
     private static void BindUIServices(ContainerBuilder builder) =>
-      builder.AddSingleton(typeof(WalletUIService), typeof(IWalletUIService));
+      builder
+        .AddSingleton(typeof(WalletUIService), typeof(IWalletUIService))
+        .AddSingleton(typeof(HUDProvider));
 
     private static void BindGameplayFactories(ContainerBuilder builder) =>
       builder
@@ -111,7 +115,8 @@ namespace Source.Scripts.Infrastructure.Installers
     private static void BindGameplayServices(ContainerBuilder builder) =>
       builder
         .AddSingleton(typeof(RoomService), typeof(IRoomService), typeof(IGameProgressReader), typeof(IGameProgressWriter))
-        .AddSingleton(typeof(CharacterService), typeof(ICharacterService), typeof(IGameProgressReader), typeof(IGameProgressWriter));
+        .AddSingleton(typeof(CharacterService), typeof(ICharacterService), typeof(IGameProgressReader), typeof(IGameProgressWriter))
+        .AddSingleton(typeof(ShopService), typeof(IShopService));
 
     private static void BindProgressServices(ContainerBuilder builder) =>
       builder
