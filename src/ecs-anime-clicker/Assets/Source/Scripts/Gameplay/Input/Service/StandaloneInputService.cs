@@ -41,8 +41,8 @@ namespace Source.Scripts.Gameplay.Input.Service
       UnityEngine.Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject();
 
     public bool GetLeftMouseButtonDown() =>
-      UnityEngine.Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject();
-    
+      UnityEngine.Input.GetMouseButtonDown(0) /*&& !EventSystem.current.IsPointerOverGameObject()*/;
+
     public bool GetLeftMouseButtonUp() => 
       UnityEngine.Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject();
   }

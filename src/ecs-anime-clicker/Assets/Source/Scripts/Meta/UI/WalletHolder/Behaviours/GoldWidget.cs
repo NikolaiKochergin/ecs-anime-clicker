@@ -17,10 +17,13 @@ namespace Source.Scripts.Meta.UI.WalletHolder.Behaviours
 
     private void Start()
     {
-      _wallet.GoldChanged += UpdateGold;
-      
       UpdateGold();
+      _wallet.GoldChanged += UpdateGold;
     }
+
+    private void OnDestroy() =>
+      
+      _wallet.GoldChanged -= UpdateGold;
 
     private void UpdateGold() =>
       _goldAmount.SetText(_wallet.CurrentGold.ToString());
