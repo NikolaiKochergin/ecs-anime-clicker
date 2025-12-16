@@ -21,11 +21,6 @@ namespace Source.Scripts.Gameplay.Input.Systems
     {
       foreach (InputEntity input in _inputs)
       {
-        if(_inputService.HasAxisInput())
-          input.ReplaceAxisInput(new Vector2(_inputService.GetHorizontalAxis(), _inputService.GetVerticalAxis()));
-        else if(input.hasAxisInput)
-          input.RemoveAxisInput();
-
         input.isMouseButtonDownInput = _inputService.GetLeftMouseButtonDown();
       }
     }

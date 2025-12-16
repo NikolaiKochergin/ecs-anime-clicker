@@ -10,8 +10,9 @@ namespace Source.Scripts._ForDebug
     [SerializeField] private Button _button;
 
     [Inject]
-    private void Construct(IRoomService roomService) =>
+    private void Construct(IRoomService roomService)
+    {
       _button.onClick.AddListener(roomService.SetNextRoom);
-    
+    }
   }
 }
